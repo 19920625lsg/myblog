@@ -3,6 +3,7 @@ package com.huawei.l00379880.myblogbackend.controller;
 import com.huawei.l00379880.myblogbackend.exception.NotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /***********************************************************
  * @Description : 首页相关的Controller
@@ -25,13 +26,20 @@ public class IndexController {
         return "index";
     }
 
-    // 常规操作,返回SpringBoot官方的处理
+    // 常规操作,返回SpringBoot官方的处理,这里是NOT_FOUND即404错误
     @GetMapping("/notfindTest")
     String notfindTest() {
         String blog=null;
         if (blog==null){
             throw  new NotFoundException("异常:博客找不到...");
         }
+        return "index";
+    }
+
+    @GetMapping("/LogAspectTest/{id}/{name}")
+    String logAspectTest(@PathVariable Integer id,@PathVariable String name) {
+
+        System.out.println("------------------in LogAspectTest--------------------");
         return "index";
     }
 
