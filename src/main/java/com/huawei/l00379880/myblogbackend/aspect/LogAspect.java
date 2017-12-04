@@ -25,7 +25,9 @@ public class LogAspect {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    // 拦截控制器中的所有方法
+    /**
+     * 拦截控制器中的所有方法
+     */
     @Pointcut("execution(* com.huawei.l00379880.myblogbackend.controller.*.*(..))")
     public void log() {
 
@@ -42,7 +44,7 @@ public class LogAspect {
         String classMethod = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
         // 给各个参数赋值
-        RequestLog requestLog=new RequestLog(url,ip,classMethod,args);
+        RequestLog requestLog = new RequestLog(url, ip, classMethod, args);
 
         logger.info("--------------------------------doBefore:下面是请求方的所有信息  -----------------------------------");
         logger.info(requestLog.toString());
@@ -53,7 +55,9 @@ public class LogAspect {
         logger.info("---------------------------------doAfter------------------------------------");
     }
 
-    // 获取返回值
+    /**
+     * 获取返回值
+     */
     @AfterReturning(returning = "result", pointcut = "log()")
     public void doAfterReturning(Object result) {
         logger.info("返回值为 ={}", result);
@@ -62,13 +66,21 @@ public class LogAspect {
     @Data
     @AllArgsConstructor
     private class RequestLog {
-        // 接口地址
+        /**
+         * 接口地址
+         */
         private String url;
-        // 访问者的IP
+        /**
+         * 访问者的IP
+         */
         private String ip;
-        // 调用的累和方法
+        /**
+         * 调用的累和方法
+         */
         private String classMethod;
-        // 传入的参数
+        /**
+         * 传入的参数
+         */
         private Object[] args;
 
     }

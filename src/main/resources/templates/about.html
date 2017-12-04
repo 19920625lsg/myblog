@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<!--移动端效果更好-->
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>关于我</title>
+		<!--一定要记得给semantic引入themes文件里,里面的字体和图标文件是必须的,要不图标无法显示的-->
+		<link rel="stylesheet" href="../static/lib/semantic/semantic.min.css" />
+		<link rel="stylesheet" href="../static/css/main.css" />
+		<script type="text/javascript" src="../static/lib/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="../static/lib/semantic/semantic.min.js"></script>
+
+	</head>
+
+	<body>
+		<!--导航-->
+		<nav class="ui inverted attached segment my-padding-mini my-shadow-small">
+			<div class="ui container">
+				<div class="ui inverted secondary stackable menu">
+					<h2 class="ui teal header item">MyBlog</h2>
+                    <a href="index.html" class="nav-item item my-mobile-hide"><i class="home icon"></i>首页</a>
+                    <a href="types.html" class="nav-item item my-mobile-hide"><i class="tags icon"></i>分类</a>
+                    <a href="tags.html" class="nav-item item my-mobile-hide"><i class="bookmark icon"></i>标签</a>
+                    <a href="archives.html" class="nav-item item my-mobile-hide"><i class="clone icon"></i>归档</a>
+                    <a href="about.html" class="active nav-item item my-mobile-hide"><i class="info icon"></i>关于我</a>
+					<div class="nav-item right item my-mobile-hide my-mobile-hide">
+						<div class="ui icon transparent inverted input">
+							<input type="text" placeholder="Search..." />
+							<i class="search icon"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a href="#" class="ui black icon button my-top-right my-mobile-show" id="toggleMenu">
+				<i class="sidebar icon"></i>
+			</a>
+		</nav>
+
+		<!--中间内容-->
+		<div class="my-container my-padding-big">
+            <div class="ui container">
+                <div class="ui stackable grid">
+                    <div class="eleven wide column">
+                        <div class="ui segment">
+                            <img src="../static/images/me.png" class="ui rounded image">
+                        </div>
+                    </div>
+                    <div class="five wide column">
+                        <div class="ui top attached segment">
+                            <div class="ui header">关于我</div>
+                        </div>
+                        <div class="ui attached segment">
+                            <div class="my-text">善于自黑的乐观派,热爱编程的务实派.</div>
+                            <div class="my-text">虽千万人,吾往矣</div>
+                        </div>
+                        <div class="ui attached segment">
+                            <div class="ui orange basic left pointing label my-margin-tiny">编程</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">运动</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">写作</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">思考</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">文学</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">交友</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">旅游</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">爬山</div>
+                        </div>
+                        <div class="ui attached segment">
+                            <div class="ui orange basic left pointing label my-margin-tiny">Java</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">Web</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">Python</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">机器学习</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">大数据</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">MySQL</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">SSM</div>
+                            <div class="ui orange basic left pointing label my-margin-tiny">微服务</div>
+                        </div>
+                        <div class="ui attached segment">
+                            <a href="#" class="ui githubCls circular icon button" data-content="19920625lsg" data-position="top center"><i class="github icon"></i></a>
+                            <a href="#" class="ui weixinCls circular icon button" data-content="liangshanguang0625" data-position="left center"><i class="weixin icon"></i></a>
+                            <a href="#" class="ui qqCls circular icon button" data-content="1648266192" data-position="bottom center"><i class="qq icon"></i></a>
+                            <a href="#" class="ui gmailCls circular icon button" data-content="liangshanguang2@gmail.com" data-position="right center"><i class="google icon"></i></a>
+                        </div>
+                        <div class="ui attached segment">
+                            <img src="../static/images/fun.jpeg" alt="just for fun" class="ui rounded image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+
+        <!--底部footer-->
+        <footer class="ui inverted vertical segment my-padding-large">
+            <div class="ui center aligned container">
+                <div class="ui inverted divided stackable grid">
+                    <div class="four wide column">
+                        <div class="ui inverted link list">
+                            <div class="item">
+                                <img src="../static/images/weixin.png" class="ui rounded image" style="width: 120px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="four wide column">
+                        <h4 class="ui inverted header my-text-thin my-text-space">最新博客</h4>
+                        <div class="ui inverted link list">
+                            <a href="#" class="item">SpringBoot学习</a>
+                            <a href="#" class="item">Docker进阶</a>
+                            <a href="#" class="item">阿里云部署实战</a>
+                        </div>
+                    </div>
+                    <div class="four wide column">
+                        <h4 class="ui inverted header my-text-thin my-text-space">联系我</h4>
+                        <div class="ui inverted link list">
+                            <a href="#" class="item">QQ:1648266192</a>
+                            <a href="#" class="item">GitHub:19920625</a>
+                            <a href="#" class="item">OSchina:lsgwr</a>
+                        </div>
+                    </div>
+                    <div class="four wide column">
+                        <h4 class="ui inverted header my-text-thin my-text-space">箴言</h4>
+                        <p class="my-text-thin my-text-space my-opacity-mini">虽千万人,吾往矣</p>
+                        <p class="my-text-thin my-text-space my-opacity-mini">Hope for the best, prepare for the worst</p>
+                    </div>
+                </div>
+                <div class="ui inverted section divider"></div>
+                <p class="my-text-thin my-text-space my-opacity-tiny">Copyright© 2017-2018 Design by Liang Shan Guang</p>
+            </div>
+        </footer>
+        <!--自定义的要放在最后，要不一些jQuery事件绑定不到控件上-->
+		<script src="../static/js/main.js"></script>
+	</body>
+</html>

@@ -19,25 +19,29 @@ public class IndexController {
         return "index";
     }
 
-    // 被0除的异常非常规的异常,所以根据ControllerExceptionHandler可以要跳转到error.html页面
+    /**
+     * 被0除的非常规的异常,所以根据ControllerExceptionHandler可以要跳转到error.html页面
+     */
     @GetMapping("/errorTest")
     String errorTest() {
         int i = 9 / 0;
         return "index";
     }
 
-    // 常规操作,返回SpringBoot官方的处理,这里是NOT_FOUND即404错误
+    /**
+     * 常规操作,返回SpringBoot官方的处理,这里是NOT_FOUND即404错误(在类NotFoundException中有)
+     */
     @GetMapping("/notfindTest")
     String notfindTest() {
-        String blog=null;
-        if (blog==null){
-            throw  new NotFoundException("异常:博客找不到...");
+        String blog = null;
+        if (blog == null) {
+            throw new NotFoundException("异常:博客找不到...");
         }
         return "index";
     }
 
     @GetMapping("/LogAspectTest/{id}/{name}")
-    String logAspectTest(@PathVariable Integer id,@PathVariable String name) {
+    String logAspectTest(@PathVariable Integer id, @PathVariable String name) {
 
         System.out.println("------------------in LogAspectTest--------------------");
         return "index";
