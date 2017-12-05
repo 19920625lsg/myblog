@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class IndexController {
     @GetMapping("/")
     String index() {
-        int i = 9 / 0;
         return "index";
     }
 
