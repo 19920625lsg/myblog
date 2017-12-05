@@ -7,27 +7,7 @@
 
 <body>
 <!--导航-->
-<nav class="ui inverted segment my-padding-mini my-shadow-small">
-    <div class="ui container">
-        <div class="ui inverted secondary stackable menu">
-            <h2 class="ui teal header item">MyBlog</h2>
-            <a href="index.html" class="active nav-item item my-mobile-hide"><i class="home icon"></i>首页</a>
-            <a href="types.html" class="nav-item item my-mobile-hide"><i class="tags icon"></i>分类</a>
-            <a href="tags.html" class="nav-item item my-mobile-hide"><i class="bookmark icon"></i>标签</a>
-            <a href="archives.html" class="nav-item item my-mobile-hide"><i class="clone icon"></i>归档</a>
-            <a href="about.html" class="nav-item item my-mobile-hide"><i class="info icon"></i>关于我</a>
-            <div class="nav-item right item my-mobile-hide my-mobile-hide">
-                <div class="ui icon transparent inverted input">
-                    <input type="text" placeholder="Search..."/>
-                    <i class="search icon"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a href="#" class="ui black icon button my-top-right my-mobile-show" id="toggleMenu">
-        <i class="sidebar icon"></i>
-    </a>
-</nav>
+<nav th:replace="_fragments :: mymenu(1)"></nav>
 
 <!--中间内容-->
 <div class="my-container my-padding">
@@ -500,42 +480,7 @@
 </div>
 
 <!--底部footer-->
-<footer class="ui inverted vertical segment my-padding-large">
-    <div class="ui center aligned container">
-        <div class="ui inverted divided stackable grid">
-            <div class="four wide column">
-                <div class="ui inverted link list">
-                    <div class="item">
-                        <img src="../static/images/weixin.png" th:src="@{images/weixin.png}" class="ui rounded image" style="width: 120px;"/>
-                    </div>
-                </div>
-            </div>
-            <div class="four wide column">
-                <h4 class="ui inverted header my-text-thin my-text-space">最新博客</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">SpringBoot学习</a>
-                    <a href="#" class="item">Docker进阶</a>
-                    <a href="#" class="item">阿里云部署实战</a>
-                </div>
-            </div>
-            <div class="four wide column">
-                <h4 class="ui inverted header my-text-thin my-text-space">联系我</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">QQ:1648266192</a>
-                    <a href="#" class="item">GitHub:19920625</a>
-                    <a href="#" class="item">OSchina:lsgwr</a>
-                </div>
-            </div>
-            <div class="four wide column">
-                <h4 class="ui inverted header my-text-thin my-text-space">箴言</h4>
-                <p class="my-text-thin my-text-space my-opacity-mini">虽千万人,吾往矣</p>
-                <p class="my-text-thin my-text-space my-opacity-mini">Hope for the best, prepare for the worst</p>
-            </div>
-        </div>
-        <div class="ui inverted section divider"></div>
-        <p class="my-text-thin my-text-space my-opacity-tiny">Copyright© 2017-2018 Design by Liang Shan Guang</p>
-    </div>
-</footer>
+<footer th:replace="_fragments :: myfooter"></footer>
 <!--自定义的要放在最后，要不一些jQuery事件绑定不到控件上-->
 <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
 </body>
