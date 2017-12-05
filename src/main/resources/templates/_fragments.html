@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:fragment="myhead(title)">
+    <meta charset="utf-8"/>
+    <!--移动端效果更好-->
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title th:replace="${title}">梁山广的博客</title>
+    <!--一定要记得给semantic引入themes文件里,里面的字体和图标文件是必须的,要不图标无法显示的-->
+    <link rel="stylesheet" href="../static/lib/semantic/semantic.min.css" th:href="@{/lib/semantic/semantic.min.css}"/>
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}"/>
+    <script type="text/javascript" src="../static/lib/jquery/jquery.min.js" th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" src="../static/lib/semantic/semantic.min.js" th:src="@{/lib/semantic/semantic.min.js}"></script>
+    <!--排版插件typo.css-->
+    <link rel="stylesheet" href="../static/lib/typo/typo.css" th:href="@{/lib/typo/typo.css}">
+    <!--动画效果：animate.css github上接近5wstar,厉害了-->
+    <link rel="stylesheet" href="../static/lib/animate/animate.css" th:href="@{/lib/animate/animate.css}"/>
+    <!--代码高亮插件:prism-->
+    <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
+    <script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+    <!--目录生成插件:tocbot-->
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <!--生成二维码的插件-->
+    <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <!--平滑滚动的插件,在从底部返回到最上面的时候更舒服些-->
+    <script src="../static/lib/scrollTo/jquery.scrollTo.min.js" th:src="@{/lib/scrollTo/jquery.scrollTo.min.js}"></script>
+    <!--自动检测再适当的时候出现右下角的工具栏-->
+    <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+</head>
+<body>
+
+</body>
+</html>
