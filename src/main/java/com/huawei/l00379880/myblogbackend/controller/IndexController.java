@@ -6,16 +6,42 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /***********************************************************
- * @Description : 首页相关的Controller
+ * @Description : 配置各个模块的访问路由
  * @author      : 梁山广
  * @date        : 2017/11/30 20:14
  * @email       : liangshanguang2@gmail.com
  ***********************************************************/
 @Controller
 public class IndexController {
+
+    @GetMapping("/about")
+    String about() {
+        return "about";
+    }
+
+    @GetMapping("/archives")
+    String archives() {
+        return "archives";
+    }
+
+    @GetMapping("/blog")
+    String blog() {
+        return "blog";
+    }
+
     @GetMapping("/")
     String index() {
         return "index";
+    }
+
+    @GetMapping("/tags")
+    String tags() {
+        return "tags";
+    }
+
+    @GetMapping("/types")
+    String types() {
+        return "types";
     }
 
     /**
