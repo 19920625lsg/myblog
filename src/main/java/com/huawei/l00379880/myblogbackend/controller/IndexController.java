@@ -34,6 +34,11 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/index")
+    String index2() {
+        return "index";
+    }
+
     @GetMapping("/tags")
     String tags() {
         return "tags";
