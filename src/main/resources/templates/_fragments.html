@@ -28,6 +28,9 @@
     <script src="../static/lib/scrollTo/jquery.scrollTo.min.js" th:src="@{/lib/scrollTo/jquery.scrollTo.min.js}"></script>
     <!--自动检测再适当的时候出现右下角的工具栏-->
     <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+    <!--markdown编辑器-->
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
+    <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
 </head>
 <body>
 <!--导航-->
@@ -59,7 +62,7 @@
             <div class="four wide column">
                 <div class="ui inverted link list">
                     <div class="item">
-                        <img src="../static/images/weixin.png" th:src="@{images/weixin.png}" class="ui rounded image" style="width: 120px;"/>
+                        <img src="../static/images/weixin.png" th:src="@{/images/weixin.png}" class="ui rounded image" style="width: 120px;"/>
                     </div>
                 </div>
             </div>
