@@ -1,20 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>错误页面</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>400错误页</title>
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
+    <!-- FONT AWESOME CSS -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!--GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Nova+Flat' rel='stylesheet' type='text/css'>
+    <!-- custom CSS here -->
+    <link href="css/500.css" rel="stylesheet" />
 </head>
 <body>
-<h1>未知的异常.....</h1>
-<div>
-    <!--下面打出的错误信息只有按F12查看源代码才可以看到,被注释掉了,下面的url和exception都是前面的controller返回地-->
-    <div th:utext="'&lt;!--'" th:remove="tag"></div>
-    <div th:utext="'Failed Request URL : ' + ${url}" th:remove="tag"></div>
-    <div th:utext="'Exception message : ' + ${exception.message}" th:remove="tag"></div>
-    <ul th:remove="tag">
-        <li th:each="st : ${exception.stackTrace}" th:remove="tag"><span th:utext="${st}" th:remove="tag"></span></li>
-    </ul>
-    <div th:utext="'--&gt;'" th:remove="tag"></div>
+    
+   
+    <div class="container">
+      
+          <div class="row pad-top text-center">
+                 <div class="col-md-6 col-md-offset-3 text-center">
+                  <h1>  What have you done? </h1>
+                   <h5> Now Go Back Using Below LInk</h5> 
+              <span id="error-link"></span>
+                     <h2>!QERUEST ERROR!</h2>
 </div>
+        </div>
+
+            <div class="row text-center">
+                 <div class="col-md-8 col-md-offset-2">
+                     
+                     <h3> <i  class="fa fa-lightbulb-o fa-5x"></i> </h3>
+               <a href="/" class="btn btn-primary">GO TO HOME PAGE</a>
+</div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+  
+  
+    <!--Core JavaScript file  -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <!--bootstrap JavaScript file  -->
+    <script src="lib/bootstrap/bootstrap.js"></script>
+     <!--Count Number JavaScript file  -->
+    <script src="js/countUp.js"></script>
+       <!--Custom JavaScript file  -->
+    <script src="js/error.js"></script>
 </body>
 </html>
