@@ -49,19 +49,6 @@ public class IndexController {
         return "types";
     }
 
-    @GetMapping("/admin")
-    String admin() {
-        return "admin/blogs";
-    }
-    @GetMapping("/lsgwr")
-    String adminLogin() {
-        return "login";
-    }
-
-    @GetMapping("/admin/add")
-    String add() {
-        return "admin/blog-add";
-    }
 
     /**
      * 被0除的非常规的异常,所以根据ControllerExceptionHandler可以要跳转到error.html页面
