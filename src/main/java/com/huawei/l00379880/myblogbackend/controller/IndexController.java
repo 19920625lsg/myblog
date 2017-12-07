@@ -53,6 +53,10 @@ public class IndexController {
     String admin() {
         return "admin/blogs";
     }
+    @GetMapping("/lsgwr")
+    String adminLogin() {
+        return "login";
+    }
 
     @GetMapping("/admin/add")
     String add() {
