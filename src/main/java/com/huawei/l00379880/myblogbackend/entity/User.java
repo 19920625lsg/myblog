@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /***********************************************************
  * @Description : 用户类(访客和自己)
@@ -35,4 +37,10 @@ public class User {
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
+
+    /**
+     * 一个用户对应多个博客
+     */
+    @OneToMany(mappedBy = "user")
+    private List<Blog> blogs = new ArrayList<>();
 }

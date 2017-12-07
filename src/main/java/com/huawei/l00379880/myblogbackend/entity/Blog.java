@@ -85,6 +85,18 @@ public class Blog {
     /**
      * 博客<===>标签 多对多
      */
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     private List<Tag> tags = new ArrayList<>();
+
+    /**
+     * 多个blog对应一个user
+     */
+    @ManyToOne
+    private User user;
+
+    /**
+     * 一个博客对应多个评论,一对多的时候由"一"维护.多对多二选一即可.一对一一般不用
+     */
+    @OneToMany(mappedBy = "blog")
+    private List<Comment> comments = new ArrayList<>();
 }

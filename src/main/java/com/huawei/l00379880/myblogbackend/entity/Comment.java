@@ -43,4 +43,10 @@ public class Comment {
      * 评论创建时间(不可更新评论,所以没有updateTime字段)
      */
     private String createTime;
+
+    /**
+     * 多个评论对应一个博客
+     */
+    @ManyToOne
+    private Blog blog;
 }
