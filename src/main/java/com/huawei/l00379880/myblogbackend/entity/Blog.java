@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /***********************************************************
  * @Description : 博客实体类
@@ -73,4 +75,16 @@ public class Blog {
      */
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
+
+    /**
+     * 博客只能属于一个分类,一个分类有多个博客
+     */
+    @ManyToOne
+    private Type type;
+
+    /**
+     * 博客<===>标签 多对多
+     */
+    @ManyToMany
+    private List<Tag> tags = new ArrayList<>();
 }

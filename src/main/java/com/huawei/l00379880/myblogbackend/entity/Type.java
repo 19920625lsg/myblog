@@ -4,10 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /***********************************************************
  * @Description : 文章类型<=====文章  一对多
@@ -29,4 +28,10 @@ public class Type {
      * 分类名称
      */
     private String name;
+
+    /**
+     * 一个分类下有多个博客.mappedBy根据blog中的type属性来绑定
+     */
+    @OneToMany(mappedBy = "type")
+    private List<Blog> blogs = new ArrayList<>();
 }

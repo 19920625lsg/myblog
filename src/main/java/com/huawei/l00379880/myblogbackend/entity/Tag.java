@@ -4,10 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /***********************************************************
  * @Description : 文章标签<=====>文章,多对多
@@ -29,4 +28,10 @@ public class Tag {
      * 分类名称
      */
     private String name;
+
+    /**
+     * 由标签类来维护多对多的关系
+     */
+    @ManyToMany(mappedBy = "tags")
+    private List<Blog> blogs = new ArrayList<>();
 }
