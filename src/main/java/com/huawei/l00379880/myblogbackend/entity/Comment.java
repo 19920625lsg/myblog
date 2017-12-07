@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /***********************************************************
  * @Description : 评论类(评论之间也有对应关系)
@@ -49,4 +51,17 @@ public class Comment {
      */
     @ManyToOne
     private Blog blog;
+
+    /**
+     ******************** 自关联,评论可以互相回复,即有内楼.******************************
+     * <p>
+     * 一个评论下面有多条回复(即子评论呢)
+     */
+    @OneToMany(mappedBy = "parentComment")
+    private List<Comment> replyComments = new ArrayList<>();
+    /**
+     * 一个子评论只有一个父评论
+     */
+    @ManyToOne
+    private Comment parentComment;
 }
