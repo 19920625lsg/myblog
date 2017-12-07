@@ -15,11 +15,11 @@ import java.util.List;
  * @date        : 2017/12/6 19:34
  * @email       : liangshanguang2@gmail.com
  ***********************************************************/
-@Entity
-@Table(name = "t_blog")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "t_blog")
 public class Blog {
 
     @Id
