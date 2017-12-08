@@ -4,7 +4,9 @@
     <meta charset="utf-8"/>
     <title>后台登录</title>
     <meta name="author" content="DeathGhost"/>
+    <!--一定要记得给semantic引入themes文件里,里面的字体和图标文件是必须的,要不图标无法显示的-->
     <link rel="stylesheet" type="text/css" href="css/login.css" th:href="@{/css/login.css}"/>
+
     <style>
         body {
             height: 100%;
@@ -64,7 +66,7 @@
             <input type="submit" value="立即登陆" class="submit_btn"/>
         </dd>
         <dd>
-            <p>Copyright© 2017 梁山广</p>
+            <p class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}">Copyright© 2017 梁山广</p>
         </dd>
     </dl>
 </form>
