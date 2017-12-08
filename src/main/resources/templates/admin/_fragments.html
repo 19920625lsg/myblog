@@ -28,7 +28,7 @@
             <div class="right menu">
                 <div class="ui dropdown item nav-item my-mobile-hide">
                     <div class="text">
-                        <img src="../../static/images/me.jpg" th:src="@{/images/me.jpg}" class="ui avatar image">梁山广
+                        <img src="../../static/images/me.jpg" th:src="${session.user.avatar}" class="ui avatar image"><username th:text="${session.user.username}"></username>
                     </div>
                     <i class="dropdown icon"></i>
                     <div class="menu">
