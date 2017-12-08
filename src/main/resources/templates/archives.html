@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <!--实际会被fragments中的对应head模块替换地，一个通用的head就能适配所有的模块了-->
-<head th:replace="_fragments :: head(~{::title})">
+<head th:replace="_fragments :: myhead(~{::title})">
     <title>归档页面</title>
 </head>
 

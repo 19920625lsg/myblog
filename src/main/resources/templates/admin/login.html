@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <title>后台登录</title>
     <meta name="author" content="DeathGhost"/>
-    <link rel="stylesheet" type="text/css" href="css/login.css"/>
+    <link rel="stylesheet" type="text/css" href="css/login.css" th:href="@{/css/login.css}"/>
     <style>
         body {
             height: 100%;
@@ -17,9 +17,9 @@
             position: absolute;
         }
     </style>
-    <script src="lib/jquery/jquery.min.js"></script>
-    <script src="lib/verifynum/verifynum.js"></script>
-    <script src="lib/particleground/particleground.js"></script>
+    <script src="lib/jquery/jquery.min.js" th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script src="lib/verifynum/verifynum.js" th:src="@{/lib/verifynum/verifynum.js}"></script>
+    <script src="lib/particleground/particleground.js" th:src="@{/lib/particleground/particleground.js}"></script>
     <script>
         $(document).ready(function () {
             //粒子背景特效

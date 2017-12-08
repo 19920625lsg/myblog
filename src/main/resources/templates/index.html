@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <!--实际会被fragments中的对应head模块替换地，一个通用的head就能适配所有的模块了-->
-<head th:replace="_fragments :: head(~{::title})">
-    <title>梁山广的博客</title>
+<head th:replace="_fragments :: myhead(~{::title})">
+    <title>博客主页</title>
 </head>
 
 <body>

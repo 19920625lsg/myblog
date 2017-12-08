@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="myhead(title)">
+    <meta charset="utf-8"/>
+    <!--移动端效果更好-->
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title th:replace="${title}">Fragments</title>
+    <!--一定要记得给semantic引入themes文件里,里面的字体和图标文件是必须的,要不图标无法显示的-->
+    <link rel="stylesheet" href="../../static/lib/semantic/semantic.min.css"
+          th:href="@{/lib/semantic/semantic.min.css}"/>
+    <link rel="stylesheet" href="../../static/css/main.css" th:href="@{/css/main.css}"/>
+
+    <script type="text/javascript" src="../../static/lib/jquery/jquery.min.js"
+            th:src="@{/lib/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" src="../../static/lib/semantic/semantic.min.js"
+            th:src="@{/lib/semantic/semantic.min.js}"></script>
+</head>
+<body>
+<!--导航-->
+<nav th:fragment="mymenu(n)" class="ui inverted attached segment my-padding-mini my-shadow-small">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">管理后台</h2>
+            <a href="#" class="nav-item item my-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i>博客</a>
+            <a href="#" class="nav-item item my-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="tags icon"></i>分类</a>
+            <a href="#" class="nav-item item my-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="bookmark icon"></i>标签</a>
+            <div class="right menu">
+                <div class="ui dropdown item nav-item my-mobile-hide">
+                    <div class="text">
+                        <img src="../../static/images/me.jpg" th:src="@{/images/me.jpg}" class="ui avatar image">梁山广
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui black icon button my-top-right my-mobile-show" id="toggleMenu">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+</body>
+</html>
