@@ -38,7 +38,7 @@ public class LoginController {
             // 用户不为空,要把用户信息放到Sesson中,但是不要把用户密码放到session中
             user.setPassword(null);
             session.setAttribute("user", user);
-            return "admin/blogs";
+            return "admin/index";
         } else {
             // 登陆失败地话就重定向到登录页,并传给前端错误消息
             attributes.addFlashAttribute("message", "用户名或密码错误!");

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,13 @@
     <meta name="author" content="">
     <title>500错误</title>
     <!-- Bootstrap core CSS -->
-    <link href="lib/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="lib/bootstrap/bootstrap.css" th:href="@{/lib/bootstrap/bootstrap.css}" rel="stylesheet">
     <!-- FONT AWESOME CSS -->
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="lib/font-awesome/css/font-awesome.min.css" th:href="@{/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
     <!--GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Nova+Flat' rel='stylesheet' type='text/css'>
     <!-- custom CSS here -->
-    <link href="css/500.css" rel="stylesheet"/>
+    <link href="css/500.css" th:href="@{/css/500.css}" rel="stylesheet"/>
 </head>
 <body>
 
@@ -42,12 +42,12 @@
 
 
 <!--Core JavaScript file  -->
-<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/jquery/jquery.min.js" th:src="@{/lib/jquery/jquery.min.js}"></script>
 <!--bootstrap JavaScript file  -->
-<script src="lib/bootstrap/bootstrap.js"></script>
+<script src="lib/bootstrap/bootstrap.js" th:src="@{/lib/bootstrap/bootstrap.js}"></script>
 <!--Count Number JavaScript file  -->
-<script src="js/countUp.js"></script>
+<script src="js/countUp.js" th:src="@{/js/countUp.js}"></script>
 <!--Custom JavaScript file  -->
-<script src="js/500.js"></script>
+<script src="js/500.js" th:src="@{/js/500.js}"></script>
 </body>
 </html>
