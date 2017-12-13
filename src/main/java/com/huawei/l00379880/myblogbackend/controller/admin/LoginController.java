@@ -26,7 +26,20 @@ public class LoginController {
     private UserService userService;
 
     @GetMapping
-    public String loginPage() {
+    public String loginPage1(HttpSession session) {
+        // 如果用户已经登录过的话就直接跳到主页
+        if(session.getAttribute("user")!=null){
+            return "admin/index";
+        }
+        return "admin/login";
+    }
+
+    @GetMapping("/login")
+    public String loginPage2(HttpSession session) {
+        // 如果用户已经登录过的话就直接跳到主页
+        if(session.getAttribute("user")!=null){
+            return "admin/index";
+        }
         return "admin/login";
     }
 
