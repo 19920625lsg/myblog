@@ -7,30 +7,7 @@
 
 <body>
 <!--导航-->
-<nav class="ui inverted attached segment my-padding-mini my-shadow-small">
-    <div class="ui container">
-        <div class="ui inverted secondary stackable menu">
-            <h2 class="ui teal header item">管理后台</h2>
-            <a href="#" class="active nav-item item my-mobile-hide"><i class="home icon"></i>博客</a>
-            <a href="#" class="nav-item item my-mobile-hide"><i class="tags icon"></i>分类</a>
-            <a href="#" class="nav-item item my-mobile-hide"><i class="bookmark icon"></i>标签</a>
-            <div class="right menu">
-                <div class="ui dropdown item nav-item my-mobile-hide">
-                    <div class="text">
-                        <img src="../../static/images/me.jpg" th:src="@{/images/me.jpg}" class="ui avatar image">梁山广
-                    </div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a href="#" class="item">注销</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a href="#" class="ui black icon button my-top-right my-mobile-show" id="toggleMenu">
-        <i class="sidebar icon"></i>
-    </a>
-</nav>
+<nav th:replace="admin/_fragments :: mymenu(1)"></nav>
 
 <!--二级导航-->
 <div class="ui attached pointing menu">

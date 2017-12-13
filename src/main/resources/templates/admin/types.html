@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:replace="admin/_fragments :: head(~{::title})">
-    <title>管理后台</title>
+    <title>分类管理</title>
 </head>
 
 <body>
-<!--导航-->
-<nav th:replace="admin/_fragments :: mymenu(1)"></nav>
+<!--分类-->
+<nav th:replace="admin/_fragments :: mymenu(2)"></nav>
 
 <!--二级导航-->
 <div class="ui attached pointing menu">
@@ -23,54 +23,19 @@
 <div class="my-container-small my-padding">
     <!--表单事件-->
     <div class="ui container">
-        <form action="#" method="post" class="ui segment form">
-            <div class="inline fields">
-                <div class="field">
-                    <input type="text" name="title" placeholder="标题">
-                </div>
-                <div class="field">
-                    <div class="ui selection dropdown">
-                        <input type="hidden" name="type">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">分类</div>
-                        <div class="menu">
-                            <div class="item" data-value="1">编程入门</div>
-                            <div class="item" data-value="2">读书笔记</div>
-                            <div class="item" data-value="3">生活思考</div>
-                            <div class="item" data-value="4">旅行记录</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui checkbox">
-                        <input type="checkbox" id="recommend" name="recommend">
-                        <label for="recommend">推荐</label>
-                    </div>
-                </div>
-                <div class="field">
-                    <button class="ui mini teal basic button"><i class="search icon"></i>搜索</button>
-                </div>
-            </div>
-        </form>
         <!--博客的数据表格-->
         <table class="ui table">
             <thead>
             <tr>
                 <th></th>
-                <th>标题</th>
-                <th>类型</th>
-                <th>推荐</th>
-                <th>更新时间</th>
+                <th>名称</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td>1</td>
-                <td>微服务入门</td>
                 <td>编程学习</td>
-                <td>是</td>
-                <td>2017-11-28 20:04</td>
                 <td>
                     <a href="#" class="ui mini teal basic button">编辑</a>
                     <a href="#" class="ui mini red basic button">删除</a>
@@ -78,10 +43,7 @@
             </tr>
             <tr>
                 <td>2</td>
-                <td>工作交接</td>
                 <td>工作相关</td>
-                <td>是</td>
-                <td>2016-11-28 20:04</td>
                 <td>
                     <a href="#" class="ui mini teal basic button">编辑</a>
                     <a href="#" class="ui mini red basic button">删除</a>
@@ -89,10 +51,7 @@
             </tr>
             <tr>
                 <td>3</td>
-                <td>周末爬山小记</td>
                 <td>生活记录</td>
-                <td>是</td>
-                <td>2017-05-28 20:04</td>
                 <td>
                     <a href="#" class="ui mini teal basic button">编辑</a>
                     <a href="#" class="ui mini red basic button">删除</a>
@@ -107,7 +66,7 @@
                         <a href="#" class="item">上一页</a>
                         <a href="#" class="item">下一页</a>
                     </div>
-                    <a href="/admin/blogAdd" class="ui mini right floated teal button">新增</a>
+                    <a href="/admin/typeAdd" class="ui mini right floated teal button">新增</a>
                 </th>
             </tr>
             </tfoot>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <title>新增分类</title>
+</head>
+
+<body>
+<!--导航-->
+<nav th:replace="admin/_fragments :: mymenu(2)"></nav>
+<!--二级导航-->
+<div class="ui attached pointing menu">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" class="teal active item">发布</a>
+            <a href="#" class="item">列表</a>
+        </div>
+    </div>
+</div>
+
+<!--中间内容-->
+<div class="my-container-big my-padding">
+    <!--表单事件-->
+    <div class="ui container">
+        <form action="#" method="post" class="ui form">
+            <div class="field">
+                <div class="ui left labeled input">
+                    <label class="ui teal basic label">名称</label>
+                    <input type="text" name="typeName" placeholder="分类名称">
+                </div>
+
+            </div>
+            <!--错误信息会自动填入这个error message为类名的div中-->
+            <div class="ui error message"></div>
+            <div class="ui right aligned container">
+                <!--利用浏览器自带函数实现返回上一个页面-->
+                <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
+                <!--分类直接提交-->
+                <button type="submit" class="ui teal button">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--底部footer-->
+<footer th:replace="_fragments :: myfooter"></footer>
+<!--自定义的要放在最后，要不一些jQuery事件绑定不到控件上-->
+<script src="../../static/js/main.js" th:src="@{/js/main.js}"></script>
+</body>
+<script>
+
+    // admin/type-add.html
+    // 博客管理页面,个人头像下拉效果
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    });
+
+    $('.ui.form').form({
+        fields: {
+            title: {
+                identifier: 'typeName',
+                rules: [{
+                    type: 'empty',
+                    prompt: '警告:请输入分类名称'
+                }]
+            }
+        }
+    });
+</script>
+</html>

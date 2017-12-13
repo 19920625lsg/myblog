@@ -22,4 +22,21 @@ public class BlogController {
     public String blogs() {
         return "admin/blogs";
     }
+
+    @GetMapping("/blogAdd")
+    public String blogAdd() {
+        return "admin/blog-add";
+    }
+
+    @GetMapping("/types")
+    public String types() {
+        return "admin/types";
+    }
+
+    @GetMapping("/typeAdd")
+    public String typeAdd() {
+        return "admin/type-add";
+    }
+
+
 }
