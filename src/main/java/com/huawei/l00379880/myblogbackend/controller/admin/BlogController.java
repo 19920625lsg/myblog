@@ -28,15 +28,4 @@ public class BlogController {
         return "admin/blog-add";
     }
 
-    @GetMapping("/types")
-    public String types() {
-        return "admin/types";
-    }
-
-    @GetMapping("/typeAdd")
-    public String typeAdd() {
-        return "admin/type-add";
-    }
-
-
 }
