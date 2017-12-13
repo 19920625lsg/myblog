@@ -24,7 +24,7 @@
     <!--表单事件-->
     <div class="ui container">
         <!--博客的数据表格-->
-        <table class="ui table">
+        <table class="ui table striped">
             <thead>
             <tr>
                 <th></th>
@@ -33,28 +33,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>编程学习</td>
+            <tr th:each="type,iterStat : ${page.content}">
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${type.name}">编程学习</td>
                 <td>
-                    <a href="#" class="ui mini teal basic button">编辑</a>
-                    <a href="#" class="ui mini red basic button">删除</a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>工作相关</td>
-                <td>
-                    <a href="#" class="ui mini teal basic button">编辑</a>
-                    <a href="#" class="ui mini red basic button">删除</a>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>生活记录</td>
-                <td>
-                    <a href="#" class="ui mini teal basic button">编辑</a>
-                    <a href="#" class="ui mini red basic button">删除</a>
+                    <a href="#" th:href="@{/admin/type/{id}/edit(id=${type.id})}"
+                       class="ui mini teal basic button">编辑</a>
+                    <a href="#" th:href="@{/admin/type/{id}/delete(id=${type.id})}"
+                       class="ui mini red basic button">删除</a>
                 </td>
             </tr>
             </tbody>
@@ -63,8 +49,8 @@
                 <!--6列合并-->
                 <th colspan="6">
                     <div class="ui mini pagination menu">
-                        <a href="#" class="item">上一页</a>
-                        <a href="#" class="item">下一页</a>
+                        <a href="#" th:href="@{/admin/types(page=${page.number}-1)}" class="item">上一页</a>
+                        <a href="#" th:href="@{/admin/types(page=${page.number}+1)}" class="item">下一页</a>
                     </div>
                     <a href="/admin/typeAdd" class="ui mini right floated teal button">新增</a>
                 </th>

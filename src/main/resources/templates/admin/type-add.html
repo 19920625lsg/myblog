@@ -17,16 +17,18 @@
         </div>
     </div>
 </div>
-
+<br><br><br><br><br><br><br><br><br><br><br><br>
 <!--中间内容-->
 <div class="my-container-big my-padding">
     <!--表单事件-->
     <div class="ui container">
-        <form action="#" method="post" class="ui form">
+        <!--一定记得写入th:action,是@不是$哦,如果不写也能提交,默认提交到当前Url-->
+        <form action="#" method="post" th:action="@{/admin/typeAdd}" class="ui form">
             <div class="field">
                 <div class="ui left labeled input">
                     <label class="ui teal basic label">名称</label>
-                    <input type="text" name="typeName" placeholder="分类名称">
+                    <!--name属性会自动封装到对象中-->
+                    <input type="text" name="name" placeholder="分类名称">
                 </div>
 
             </div>
@@ -41,7 +43,7 @@
         </form>
     </div>
 </div>
-
+<br><br><br><br><br><br><br><br><br><br><br><br>
 <!--底部footer-->
 <footer th:replace="_fragments :: myfooter"></footer>
 <!--自定义的要放在最后，要不一些jQuery事件绑定不到控件上-->
@@ -58,7 +60,7 @@
     $('.ui.form').form({
         fields: {
             title: {
-                identifier: 'typeName',
+                identifier: 'name',
                 rules: [{
                     type: 'empty',
                     prompt: '警告:请输入分类名称'
