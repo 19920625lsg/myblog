@@ -3,6 +3,7 @@ package com.huawei.l00379880.myblogbackend.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class Type {
     /**
      * 分类名称
      */
+    @NotBlank(message = "后端校验：分类名称不能为空")
     private String name;
 
     /**

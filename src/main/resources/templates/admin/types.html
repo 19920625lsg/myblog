@@ -23,6 +23,11 @@
 <div class="my-container-small my-padding">
     <!--表单事件-->
     <div class="ui container">
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+            <i class="close icon"></i>
+            <div class="header">提示：</div>
+            <p th:text="${message}">恭喜，添加分类成功！</p>
+        </div>
         <!--博客的数据表格-->
         <table class="ui table striped">
             <thead>
@@ -48,9 +53,11 @@
             <tr>
                 <!--6列合并-->
                 <th colspan="6">
-                    <div class="ui mini pagination menu">
-                        <a href="#" th:href="@{/admin/types(page=${page.number}-1)}" class="item">上一页</a>
-                        <a href="#" th:href="@{/admin/types(page=${page.number}+1)}" class="item">下一页</a>
+                    <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
+                        <a href="#" th:href="@{/admin/types(page=${page.number}-1)}" class="item"
+                           th:unless="${page.first}">上一页</a>
+                        <a href="#" th:href="@{/admin/types(page=${page.number}+1)}" class="item"
+                           th:unless="${page.last}">下一页</a>
                     </div>
                     <a href="/admin/typeAdd" class="ui mini right floated teal button">新增</a>
                 </th>
@@ -66,10 +73,15 @@
 <script src="../../static/js/main.js" th:src="@{/js/main.js}"></script>
 </body>
 <script>
-    // admin/blogs.html
+    // admin/types.html
     // 博客管理页面,个人头像下拉效果
     $('.ui.dropdown').dropdown({
         on: 'hover'
+    });
+
+    // 提示信息的可关闭
+    $('.message .close').on('click',function () {
+        $(this).closest('.message').transition('fade');
     });
 </script>
 </html>
