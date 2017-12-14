@@ -27,6 +27,8 @@ public interface TypeService {
      */
     Type getType(Long id);
 
+    Type getTypeByName(String name);
+
     /**
      * 分页查询
      *

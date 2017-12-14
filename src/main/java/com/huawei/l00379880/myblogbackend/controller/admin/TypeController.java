@@ -45,16 +45,22 @@ public class TypeController {
 
     @PostMapping("/typeAdd")
     public String typeAddPost(@Valid Type type, BindingResult result, RedirectAttributes attributes) {
-        if (result.hasErrors()){
+        // 校验分类是不是已经有了
+        Type tt = typeService.getTypeByName(type.getName());
+        if (tt != null) {
+            result.rejectValue("name", "nameError", "分类已经存在，不能重复添加！");
+        }
+        // 出现异常直接返回添加页面
+        if (result.hasErrors()) {
             return "admin/type-add";
         }
         Type t = typeService.saveType(type);
         if (t == null) {
             // 未保存成功,传给前端一个提示
-            attributes.addFlashAttribute("message","添加博客分类失败！");
+            attributes.addFlashAttribute("message", "添加博客分类失败！");
         } else {
             // 保存成功,传给前端一个提示
-            attributes.addFlashAttribute("message","添加博客分类成功！");
+            attributes.addFlashAttribute("message", "添加博客分类成功！");
         }
         return "redirect:/admin/types";
     }

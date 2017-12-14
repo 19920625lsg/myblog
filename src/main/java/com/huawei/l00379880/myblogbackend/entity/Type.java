@@ -28,7 +28,7 @@ public class Type {
     /**
      * 分类名称
      */
-    @NotBlank(message = "后端校验：分类名称不能为空")
+    @NotBlank(message = "分类名称不能为空")
     private String name;
 
     /**

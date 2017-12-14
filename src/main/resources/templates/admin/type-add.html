@@ -24,7 +24,7 @@
     <div class="ui container">
         <!--一定记得写入th:action,是@不是$哦,如果不写也能提交,默认提交到当前Url-->
         <form action="#" method="post" th:action="@{/admin/typeAdd}" class="ui form">
-            <div class="field">
+            <div class="required field">
                 <div class="ui left labeled input">
                     <label class="ui teal basic label">名称</label>
                     <!--name属性会自动封装到对象中-->
@@ -34,6 +34,13 @@
             </div>
             <!--错误信息会自动填入这个error message为类名的div中-->
             <div class="ui error message"></div>
+            <!--/*/
+           <div class="ui negative message" th:if="${#fields.hasErrors('name')}"  >
+             <i class="close icon"></i>
+             <div class="header">验证失败</div>
+             <p th:errors="*{name}">提交信息不符合规则</p>
+           </div>
+            /*/-->
             <div class="ui right aligned container">
                 <!--利用浏览器自带函数实现返回上一个页面-->
                 <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
