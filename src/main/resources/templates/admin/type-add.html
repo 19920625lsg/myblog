@@ -23,12 +23,12 @@
     <!--表单事件-->
     <div class="ui container">
         <!--一定记得写入th:action,是@不是$哦,如果不写也能提交,默认提交到当前Url-->
-        <form action="#" method="post" th:action="@{/admin/typeAdd}" class="ui form">
+        <form action="#" method="post" th:object="${type}" th:action="@{/admin/typeAdd}" class="ui form">
             <div class="required field">
                 <div class="ui left labeled input">
                     <label class="ui teal basic label">名称</label>
                     <!--name属性会自动封装到对象中-->
-                    <input type="text" name="name" placeholder="分类名称">
+                    <input type="text" name="name" placeholder="分类名称"  th:value="*{name}">
                 </div>
 
             </div>

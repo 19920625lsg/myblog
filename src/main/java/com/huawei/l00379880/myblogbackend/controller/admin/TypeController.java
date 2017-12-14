@@ -39,7 +39,9 @@ public class TypeController {
     }
 
     @GetMapping("/typeAdd")
-    public String typeAdd() {
+    public String typeAdd(Model model) {
+        // 不谢这一句前端会出现Neither BindingResult nor plain target object for bean name 'type'
+        model.addAttribute("type", new Type());
         return "admin/type-add";
     }
 
