@@ -13,8 +13,8 @@
 <div class="ui attached pointing menu">
     <div class="ui container">
         <div class="right menu">
-            <a href="#" class="item">发布</a>
-            <a href="#" class="teal active item">列表</a>
+            <a th:href="@{/admin/typeAdd}" class="item">发布</a>
+            <a th:href="@{/admin/types}" class="teal active item">列表</a>
         </div>
     </div>
 </div>
@@ -80,7 +80,7 @@
     });
 
     // 提示信息的可关闭
-    $('.message .close').on('click',function () {
+    $('.message .close').on('click', function () {
         $(this).closest('.message').transition('fade');
     });
 </script>

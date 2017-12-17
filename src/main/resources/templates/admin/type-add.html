@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:replace="admin/_fragments :: head(~{::title})">
-    <title>新增分类</title>
+    <title>新增or修改分类</title>
 </head>
 
 <body>
@@ -12,8 +12,8 @@
 <div class="ui attached pointing menu">
     <div class="ui container">
         <div class="right menu">
-            <a href="#" class="teal active item">发布</a>
-            <a href="#" class="item">列表</a>
+            <a th:href="@{/admin/typeAdd}" class="teal active item">发布</a>
+            <a th:href="@{/admin/types}" class="item">列表</a>
         </div>
     </div>
 </div>
@@ -23,7 +23,8 @@
     <!--表单事件-->
     <div class="ui container">
         <!--一定记得写入th:action,是@不是$哦,如果不写也能提交,默认提交到当前Url-->
-        <form action="#" method="post" th:object="${type}" th:action="@{/admin/typeAdd}" class="ui form">
+        <form action="#" method="post" th:object="${type}" th:action="*{id}==null ? @{/admin/typeAdd} : @{/admin/typeEdit/{id}(id=*{id})}" class="ui form">
+            <input type="hidden" name="id" th:value="*{id}">
             <div class="required field">
                 <div class="ui left labeled input">
                     <label class="ui teal basic label">名称</label>
