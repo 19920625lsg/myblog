@@ -24,6 +24,7 @@
     <!--表单事件-->
     <div class="ui container">
         <form action="#" method="post" class="ui secondary segment form">
+            <input type="hidden" name="page">
             <div class="inline fields">
                 <div class="field">
                     <input type="text" name="title" placeholder="标题">
@@ -65,37 +66,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>微服务入门</td>
-                <td>编程学习</td>
-                <td>是</td>
-                <td>2017-11-28 20:04</td>
+            <tr th:each="blog,itetStat : ${page.content}">
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${blog.title}">微服务入门</td>
+                <td th:text="${blog.type.name}">编程学习</td>
+                <td th:text="${blog.recommended} ? '是' ：'否'">是</td>
+                <td th:text="${blog.updateTime}">2017-11-28 20:04</td>
                 <td>
-                    <a href="#" class="ui mini teal basic button">编辑</a>
-                    <a href="#" class="ui mini red basic button">删除</a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>工作交接</td>
-                <td>工作相关</td>
-                <td>是</td>
-                <td>2016-11-28 20:04</td>
-                <td>
-                    <a href="#" class="ui mini teal basic button">编辑</a>
-                    <a href="#" class="ui mini red basic button">删除</a>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>周末爬山小记</td>
-                <td>生活记录</td>
-                <td>是</td>
-                <td>2017-05-28 20:04</td>
-                <td>
-                    <a href="#" class="ui mini teal basic button">编辑</a>
-                    <a href="#" class="ui mini red basic button">删除</a>
+                    <a href="#" th:href="@{/admin/blog/{id}/edit(id=${blog.id})}"
+                       class="ui mini teal basic button">编辑</a>
+                    <a href="#" th:href="@{/admin/blog/{id}/delete(id=${blog.id})}"
+                       class="ui mini red basic button">删除</a>
                 </td>
             </tr>
             </tbody>
@@ -103,9 +84,11 @@
             <tr>
                 <!--6列合并-->
                 <th colspan="6">
-                    <div class="ui mini pagination menu">
-                        <a href="#" class="item">上一页</a>
-                        <a href="#" class="item">下一页</a>
+                    <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
+                        <a onclick="page(this)" th:attr="data-page=${page.number}-1" class="item"
+                           th:unless="${page.first}">上一页</a>
+                        <a onclick="page(this)" th:attr="data-page=${page.number}+1" class="item"
+                           th:unless="${page.last}">下一页</a>
                     </div>
                     <a href="/admin/blogAdd" class="ui mini right floated teal button">新增</a>
                 </th>
@@ -126,5 +109,9 @@
     $('.ui.dropdown').dropdown({
         on: 'hover'
     });
+
+    function page(obj) {
+        $("[name='page']").val($(obj).data("page"));
+    }
 </script>
 </html>

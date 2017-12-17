@@ -55,7 +55,7 @@ public class BlogServiceImpl implements BlogService {
                 }
                 // 是否被推荐
                 if (blog.isRecommended()) {
-                    predicateList.add(criteriaBuilder.equal(root.<Boolean>get("recommend"), blog.isRecommended()));
+                    predicateList.add(criteriaBuilder.equal(root.<Boolean>get("recommended"), blog.isRecommended()));
                 }
                 // 组合上面的查询条件，不为空就会被加入到下面的条件中
                 criteriaQuery.where(predicateList.toArray(new Predicate[predicateList.size()]));
