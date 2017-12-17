@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <title>标签管理</title>
+</head>
+
+<body>
+<!--标签-->
+<nav th:replace="admin/_fragments :: mymenu(3)"></nav>
+
+<!--二级导航-->
+<div class="ui attached pointing menu">
+    <div class="ui container">
+        <div class="right menu">
+            <a th:href="@{/admin/tagAdd}" class="item">发布</a>
+            <a th:href="@{/admin/tags}" class="teal active item">列表</a>
+        </div>
+    </div>
+</div>
+
+<!--中间内容-->
+<div class="my-container-small my-padding">
+    <!--表单事件-->
+    <div class="ui container">
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+            <i class="close icon"></i>
+            <div class="header">提示：</div>
+            <p th:text="${message}">恭喜，添加分类成功！</p>
+        </div>
+        <!--博客的数据表格-->
+        <table class="ui table striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th>名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tag,iterStat : ${page.content}">
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${tag.name}">编程学习</td>
+                <td>
+                    <a href="#" th:href="@{/admin/tag/{id}/edit(id=${tag.id})}"
+                       class="ui mini teal basic button">编辑</a>
+                    <a href="#" th:href="@{/admin/tag/{id}/delete(id=${tag.id})}"
+                       class="ui mini red basic button">删除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <!--6列合并-->
+                <th colspan="6">
+                    <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
+                        <a href="#" th:href="@{/admin/tags(page=${page.number}-1)}" class="item"
+                           th:unless="${page.first}">上一页</a>
+                        <a href="#" th:href="@{/admin/tags(page=${page.number}+1)}" class="item"
+                           th:unless="${page.last}">下一页</a>
+                    </div>
+                    <a href="/admin/tagAdd" class="ui mini right floated teal button">新增</a>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<!--底部footer-->
+<footer th:replace="_fragments :: myfooter"></footer>
+<!--自定义的要放在最后，要不一些jQuery事件绑定不到控件上-->
+<script src="../../static/js/main.js" th:src="@{/js/main.js}"></script>
+</body>
+<script>
+    // admin/tags.html
+    // 博客管理页面,个人头像下拉效果
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    });
+
+    // 提示信息的可关闭
+    $('.message .close').on('click', function () {
+        $(this).closest('.message').transition('fade');
+    });
+</script>
+</html>
