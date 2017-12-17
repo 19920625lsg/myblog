@@ -1,8 +1,16 @@
 package com.huawei.l00379880.myblogbackend.controller.admin;
 
+import com.huawei.l00379880.myblogbackend.entity.Blog;
+import com.huawei.l00379880.myblogbackend.service.BlogService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 /***********************************************************
  * @Description : 后台博客编辑和访问
@@ -14,12 +22,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class BlogController {
 
+    @Autowired
+    private BlogService blogService;
+
     /**
      * 访问后台博客列表,但是需要拦截器的哦,必须登录的用户才能访问博客列表
+     *
      * @return
      */
     @GetMapping("/blogs")
-    public String blogs() {
+    public String blogs(@PageableDefault(size = 2,sort = {"updateTime"},direction = Sort.Direction.DESC) Pageable pageable, Blog blog, Model model) {
+        model.addAttribute("page", blogService.listBlog(pageable, blog));
         return "admin/blogs";
     }
 
