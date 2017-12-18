@@ -11,6 +11,7 @@ import com.huawei.l00379880.myblogbackend.entity.Type;
 import com.huawei.l00379880.myblogbackend.exception.NotFoundException;
 import com.huawei.l00379880.myblogbackend.repository.BlogRepository;
 import com.huawei.l00379880.myblogbackend.service.BlogService;
+import com.huawei.l00379880.myblogbackend.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -39,7 +40,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Page<Blog> listBlog(Pageable pageable, Blog blog) {
+    public Page<Blog> listBlog(Pageable pageable, BlogQuery blog) {
         return blogRepository.findAll(new Specification<Blog>() {
             @Override
             public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
@@ -50,8 +51,8 @@ public class BlogServiceImpl implements BlogService {
                     predicateList.add(criteriaBuilder.like(root.<String>get("title"), "%" + blog.getTitle() + "%"));
                 }
                 // 分类不为空的话
-                if (blog.getType().getId() != null) {
-                    predicateList.add(criteriaBuilder.equal(root.<Type>get("type"), blog.getType().getId()));
+                if (blog.getTypeId()!= null) {
+                    predicateList.add(criteriaBuilder.equal(root.<Type>get("type"), blog.getTypeId()));
                 }
                 // 是否被推荐
                 if (blog.isRecommended()) {

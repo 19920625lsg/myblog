@@ -7,6 +7,7 @@
 package com.huawei.l00379880.myblogbackend.service;
 
 import com.huawei.l00379880.myblogbackend.entity.Blog;
+import com.huawei.l00379880.myblogbackend.vo.BlogQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,7 +15,7 @@ public interface BlogService {
 
     Blog getBlog(Long id);
 
-    Page<Blog> listBlog(Pageable pageable, Blog blog);
+    Page<Blog> listBlog(Pageable pageable, BlogQuery blog);
 
     Blog saveBlog(Blog blog);
 
