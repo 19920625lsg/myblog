@@ -43,8 +43,8 @@
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="recommend" name="recommend">
-                        <label for="recommend">推荐</label>
+                        <input type="checkbox" id="recommended" name="recommended">
+                        <label for="recommended">推荐</label>
                     </div>
                 </div>
                 <div class="field">
@@ -127,7 +127,7 @@
         $("#table-container").load(/*[[@{/admin/blogs/search}]]*/"/admin/blogs/search", {
             title: $("[name='title']").val(),
             typeId: $("[name='typeId']").val(),
-            recommend: $("[name='recommend']").prop('checked'),
+            recommended: $("[name='recommended']").prop('checked'),
             page: $("[name='page']").val()
         });
     }
