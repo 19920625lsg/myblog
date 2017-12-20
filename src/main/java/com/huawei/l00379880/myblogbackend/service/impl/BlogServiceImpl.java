@@ -25,6 +25,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -51,7 +52,7 @@ public class BlogServiceImpl implements BlogService {
                     predicateList.add(criteriaBuilder.like(root.<String>get("title"), "%" + blog.getTitle() + "%"));
                 }
                 // 分类不为空的话
-                if (blog.getTypeId()!= null) {
+                if (blog.getTypeId() != null) {
                     predicateList.add(criteriaBuilder.equal(root.<Type>get("type"), blog.getTypeId()));
                 }
                 // 是否被推荐
@@ -67,6 +68,9 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog saveBlog(Blog blog) {
+        blog.setCreateTime(new Date());
+        blog.setUpdateTime(new Date());
+        blog.setVisits(0);
         return blogRepository.save(blog);
     }
 

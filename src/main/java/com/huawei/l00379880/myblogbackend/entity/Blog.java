@@ -44,7 +44,7 @@ public class Blog {
     /**
      * 浏览量
      */
-    private String visits;
+    private Integer visits;
     /**
      * 是否开启赞赏
      */

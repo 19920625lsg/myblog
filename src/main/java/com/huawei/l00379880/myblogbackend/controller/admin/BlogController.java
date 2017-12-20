@@ -1,6 +1,7 @@
 package com.huawei.l00379880.myblogbackend.controller.admin;
 
 import com.huawei.l00379880.myblogbackend.entity.Blog;
+import com.huawei.l00379880.myblogbackend.entity.User;
 import com.huawei.l00379880.myblogbackend.service.BlogService;
 import com.huawei.l00379880.myblogbackend.service.TagService;
 import com.huawei.l00379880.myblogbackend.service.TypeService;
@@ -14,6 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
 
 
 /***********************************************************
@@ -66,5 +70,19 @@ public class BlogController {
         return BLOG_ADD;
     }
 
+    @PostMapping("/blogAdd")
+    public String blogSave(Blog blog, RedirectAttributes attributes, HttpSession session) {
+        blog.setUser((User) session.getAttribute("user"));
+        blog.setType(typeService.getType(blog.getType().getId()));
+        Blog b = blogService.saveBlog(blog);
+        if (b == null) {
+            // 未保存成功,传给前端一个提示
+            attributes.addFlashAttribute("message", "新增or修改博客失败！");
+        } else {
+            // 保存成功,传给前端一个提示
+            attributes.addFlashAttribute("message", "修改or修改博客成功！");
+        }
+        return BLOG_LIST_REDIRECT;
+    }
 
 }
