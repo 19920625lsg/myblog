@@ -4,6 +4,8 @@ import com.huawei.l00379880.myblogbackend.entity.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /***********************************************************
  * @Description : 博客标签服务接口
  * @author      : 梁山广
@@ -38,9 +40,16 @@ public interface TagService {
     Page<Tag> listTag(Pageable pageable);
 
     /**
+     * 获取所有的标签
+     *
+     * @return
+     */
+    List<Tag> listTag();
+
+    /**
      * 更新标签
      *
-     * @param id   由id查询标签
+     * @param id  由id查询标签
      * @param tag 更改过后的标签
      * @return
      */

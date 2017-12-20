@@ -56,9 +56,9 @@
                             <i class="dropdown icon"></i>
                             <div class="default text">分类</div>
                             <div class="menu">
-                                <div class="item" data-value="1">编程学习</div>
-                                <div class="item" data-value="2">生活思考</div>
-                                <div class="item" data-value="3">旅游记录</div>
+                                <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}"
+                                     th:text="${type.name}">编程学习
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -72,12 +72,9 @@
                             <i class="dropdown icon"></i>
                             <div class="default text">标签</div>
                             <div class="menu">
-                                <div class="item" data-value="1">Java</div>
-                                <div class="item" data-value="2">Web</div>
-                                <div class="item" data-value="3">Python</div>
-                                <div class="item" data-value="4">生活</div>
-                                <div class="item" data-value="5">其他</div>
-                                <div class="item" data-value="6">JavaScript</div>
+                                <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}"
+                                     th:text="${tag.name}">编程学习
+                                </div>
                             </div>
                         </div>
                     </div>

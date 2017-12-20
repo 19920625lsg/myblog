@@ -91,7 +91,7 @@
                             <a onclick="page(this)" th:attr="data-page=${page.number}+1" class="item"
                                th:unless="${page.last}">下一页</a>
                         </div>
-                        <a href="/admin/blogAdd" class="ui mini right floated teal button">新增</a>
+                        <a href="#" th:href="@{/admin/blogAdd}" class="ui mini right floated teal button">新增</a>
                     </th>
                 </tr>
                 </tfoot>

@@ -2,6 +2,7 @@ package com.huawei.l00379880.myblogbackend.controller.admin;
 
 import com.huawei.l00379880.myblogbackend.entity.Blog;
 import com.huawei.l00379880.myblogbackend.service.BlogService;
+import com.huawei.l00379880.myblogbackend.service.TagService;
 import com.huawei.l00379880.myblogbackend.service.TypeService;
 import com.huawei.l00379880.myblogbackend.vo.BlogQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class BlogController {
 
+    private static final String BLOG_LIST = "admin/blogs";
+    private static final String BLOG_LIST_REDIRECT = "redirect:/admin/blogs";
+    private static final String BLOG_ADD = "admin/blog-add";
+
     @Autowired
     private BlogService blogService;
 
     @Autowired
     private TypeService typeService;
+
+    @Autowired
+    private TagService tagService;
 
     /**
      * 访问后台博客列表,但是需要拦截器的哦,必须登录的用户才能访问博客列表
@@ -38,11 +46,10 @@ public class BlogController {
      */
     @GetMapping("/blogs")
     public String blogs(@PageableDefault(size = 2, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
-        model.addAttribute("types",typeService.listType());
+        model.addAttribute("types", typeService.listType());
         model.addAttribute("page", blogService.listBlog(pageable, blog));
-        return "admin/blogs";
+        return BLOG_LIST;
     }
-
 
 
     @PostMapping("/blogs/search")
@@ -52,8 +59,12 @@ public class BlogController {
     }
 
     @GetMapping("/blogAdd")
-    public String blogAdd() {
-        return "admin/blog-add";
+    public String blogAdd(Model model) {
+        model.addAttribute("types", typeService.listType());
+        model.addAttribute("tags", tagService.listTag());
+        model.addAttribute("blog", new Blog());
+        return BLOG_ADD;
     }
+
 
 }
