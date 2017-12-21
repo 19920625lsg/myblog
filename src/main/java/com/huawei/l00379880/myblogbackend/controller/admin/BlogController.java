@@ -113,6 +113,11 @@ public class BlogController {
      */
     @PostMapping("/blogAdd")
     public String blogSave(Blog blog, RedirectAttributes attributes, HttpSession session) {
+        if (blog.getId() == null) {
+            attributes.addFlashAttribute("message", "新增博客成功！");
+        } else {
+            attributes.addFlashAttribute("message", "修改博客成功！");
+        }
         blog.setUser((User) session.getAttribute("user"));
         blog.setType(typeService.getType(blog.getType().getId()));
         blog.setTags(tagService.listTag(blog.getTagIds()));
@@ -120,13 +125,6 @@ public class BlogController {
         if (b == null) {
             // 未保存成功,传给前端一个提示
             attributes.addFlashAttribute("message", "新增or修改博客失败！");
-        } else {
-            // 保存成功,传给前端一个提示
-            if (blog.getId() == null) {
-                attributes.addFlashAttribute("message", "新增博客成功！");
-            } else {
-                attributes.addFlashAttribute("message", "修改博客成功！");
-            }
         }
         return BLOG_LIST_REDIRECT;
     }
