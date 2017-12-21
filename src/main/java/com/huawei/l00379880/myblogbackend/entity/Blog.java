@@ -30,8 +30,10 @@ public class Blog {
      */
     private String title;
     /**
-     * 文章内容
+     * 文章内容,对应LongText数据类型,要不String 类型默认为varchar(255),太短了
      */
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
     private String content;
     /**
      * 文章首图
@@ -65,6 +67,12 @@ public class Blog {
      * 是否推荐
      */
     private boolean recommended;
+
+    /**
+     * 这个字段不需要保存到数据库中,对应前端的tagIds标签
+     */
+    @Transient
+    private String tagIds;
     /**
      * 创建时间
      */

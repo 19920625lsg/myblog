@@ -96,6 +96,12 @@
                 </tr>
                 </tfoot>
             </table>
+            <!--操作成功与否的信息提示-->
+            <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                <i class="close icon"></i>
+                <div class="header">提示：</div>
+                <p th:text="${message}">恭喜，添加博客成功！</p>
+            </div>
         </div>
     </div>
 
@@ -121,6 +127,11 @@
     $("#search-btn").click(function () {
         $("[name='page']").val(0);
         loaddata();
+    });
+
+    // 提示信息的可关闭
+    $('.message .close').on('click', function () {
+        $(this).closest('.message').transition('fade');
     });
 
     function loaddata() {

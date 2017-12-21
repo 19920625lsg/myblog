@@ -9,7 +9,7 @@ spring:
     password: 19921023wr
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
 
 logging:
