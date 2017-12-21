@@ -67,12 +67,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="blog,itetStat : ${page.content}">
+                <tr th:each="blog,iterStat : ${page.content}">
                     <td th:text="${iterStat.count}">1</td>
-                    <td th:text="${blog.title}">微服务入门</td>
-                    <td th:text="${blog.type.name}">编程学习</td>
-                    <td th:text="${blog.recommended} ? '是' ：'否'">是</td>
-                    <td th:text="${blog.updateTime}">2017-11-28 20:04</td>
+                    <td th:text="${blog.title}">刻意练习清单</td>
+                    <td th:text="${blog.type.name}">认知升级</td>
+                    <td th:text="${blog.recommended} ? '是':'否'">是</td>
+                    <td th:text="${blog.published} ? '发布':'草稿'">草稿</td>
+                    <td th:text="${blog.updateTime}">2017-10-02 09:45</td>
                     <td>
                         <a href="#" th:href="@{/admin/blog/{id}/edit(id=${blog.id})}"
                            class="ui mini teal basic button">编辑</a>

@@ -81,7 +81,7 @@ public class BlogController {
             attributes.addFlashAttribute("message", "新增or修改博客失败！");
         } else {
             // 保存成功,传给前端一个提示
-            attributes.addFlashAttribute("message", "修改or修改博客成功！");
+            attributes.addFlashAttribute("message", "新增or修改博客成功！");
         }
         return BLOG_LIST_REDIRECT;
     }
