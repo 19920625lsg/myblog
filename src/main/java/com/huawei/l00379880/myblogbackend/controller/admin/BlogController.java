@@ -13,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -62,14 +63,54 @@ public class BlogController {
         return "admin/blogs :: blogList";
     }
 
+    /**
+     * 博客新增页面,直接点击新增
+     *
+     * @param model
+     * @return
+     */
     @GetMapping("/blogAdd")
     public String blogAdd(Model model) {
-        model.addAttribute("types", typeService.listType());
-        model.addAttribute("tags", tagService.listTag());
+        setTypeAndTag(model);
         model.addAttribute("blog", new Blog());
         return BLOG_ADD;
     }
 
+    @GetMapping("/blog/{id}/edit")
+    public String blogEdit(@PathVariable Long id, Model model) {
+        setTypeAndTag(model);
+        Blog blog = blogService.getBlog(id);
+        // 转换tagIds
+        blog.init();
+        model.addAttribute("blog", blog);
+        return BLOG_ADD;
+    }
+
+    @GetMapping("/blog/{id}/delete")
+    public String blogDelete(@PathVariable Long id, RedirectAttributes attributes) {
+        attributes.addFlashAttribute("message", "删除博客'" + blogService.getBlog(id).getTitle() + "'成功！");
+        blogService.deleteBlog(id);
+        return BLOG_LIST_REDIRECT;
+    }
+
+    /**
+     * 设置分类和标签
+     *
+     * @param model
+     */
+    private void setTypeAndTag(Model model) {
+        model.addAttribute("types", typeService.listType());
+        model.addAttribute("tags", tagService.listTag());
+    }
+
+    /**
+     * 博客编辑完了,点击"post"提交
+     *
+     * @param blog
+     * @param attributes
+     * @param session
+     * @return
+     */
     @PostMapping("/blogAdd")
     public String blogSave(Blog blog, RedirectAttributes attributes, HttpSession session) {
         blog.setUser((User) session.getAttribute("user"));
@@ -81,7 +122,11 @@ public class BlogController {
             attributes.addFlashAttribute("message", "新增or修改博客失败！");
         } else {
             // 保存成功,传给前端一个提示
-            attributes.addFlashAttribute("message", "新增or修改博客成功！");
+            if (blog.getId() == null) {
+                attributes.addFlashAttribute("message", "新增博客成功！");
+            } else {
+                attributes.addFlashAttribute("message", "修改博客成功！");
+            }
         }
         return BLOG_LIST_REDIRECT;
     }

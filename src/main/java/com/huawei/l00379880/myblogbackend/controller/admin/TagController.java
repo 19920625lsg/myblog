@@ -33,7 +33,7 @@ public class TagController {
 
     @GetMapping("/tags")
     public String tags(@PageableDefault(size = 5, sort = {"id"}, direction = Sort.Direction.DESC)
-                                Pageable pageable, Model model) {
+                               Pageable pageable, Model model) {
         // pageable对象会根据url中的传参自动组装起来
         model.addAttribute("page", tagService.listTag(pageable));
         return "admin/tags";
@@ -99,8 +99,8 @@ public class TagController {
 
     @GetMapping("/tag/{id}/delete")
     public String deleteTag(@PathVariable Long id, RedirectAttributes attributes) {
+        attributes.addFlashAttribute("message", "删除博客'" + tagService.getTag(id).getName() + "'标签成功！");
         tagService.deleteTag(id);
-        attributes.addFlashAttribute("message", "删除博客标签成功！");
         return "redirect:/admin/tags";
     }
 

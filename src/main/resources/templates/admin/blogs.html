@@ -23,6 +23,12 @@
 <div class="my-container-small my-padding">
     <!--表单事件-->
     <div class="ui container">
+        <!--操作成功与否的信息提示-->
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+            <i class="close icon"></i>
+            <div class="header">提示：</div>
+            <p th:text="${message}">恭喜，添加博客成功！</p>
+        </div>
         <div class="ui secondary segment form">
             <input type="hidden" name="page">
             <div class="inline fields">
@@ -101,12 +107,6 @@
                 </tr>
                 </tfoot>
             </table>
-            <!--操作成功与否的信息提示-->
-            <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
-                <i class="close icon"></i>
-                <div class="header">提示：</div>
-                <p th:text="${message}">恭喜，添加博客成功！</p>
-            </div>
         </div>
     </div>
 

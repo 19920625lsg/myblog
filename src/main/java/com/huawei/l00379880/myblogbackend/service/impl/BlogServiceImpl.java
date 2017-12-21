@@ -68,9 +68,16 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog saveBlog(Blog blog) {
-        blog.setCreateTime(new Date());
+        // 博客首次提交的id为null
+        if (blog.getId() == null) {
+            blog.setCreateTime(new Date());
+            blog.setVisits(0);
+        }else {
+            // 这种情况为保存,所以之前的createTime因为不能再前端展示,所以这里获取一下数据库现有地
+            blog.setCreateTime(blogRepository.getOne(blog.getId()).getCreateTime());
+        }
+        // 更新每次都刷新时间
         blog.setUpdateTime(new Date());
-        blog.setVisits(0);
         return blogRepository.save(blog);
     }
 

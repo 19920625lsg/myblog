@@ -99,8 +99,8 @@ public class TypeController {
 
     @GetMapping("/type/{id}/delete")
     public String deleteType(@PathVariable Long id, RedirectAttributes attributes) {
+        attributes.addFlashAttribute("message", "删除博客分类'" + typeService.getType(id).getName() + "'成功！");
         typeService.deleteType(id);
-        attributes.addFlashAttribute("message", "删除博客分类成功！");
         return "redirect:/admin/types";
     }
 
