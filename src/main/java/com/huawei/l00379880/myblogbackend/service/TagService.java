@@ -55,6 +55,14 @@ public interface TagService {
     List<Tag> listTag(String ids);
 
     /**
+     * 获取前size条标签
+     *
+     * @param size 获取的标签数目
+     * @return
+     */
+    List<Tag> listTagTop(Integer size);
+
+    /**
      * 更新标签
      *
      * @param id  由id查询标签
@@ -69,4 +77,6 @@ public interface TagService {
      * @param id 待删除标签的id
      */
     void deleteTag(Long id);
+
+
 }

@@ -67,6 +67,11 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public Page<Blog> listBlog(Pageable pageable) {
+        return blogRepository.findAll(pageable);
+    }
+
+    @Override
     public Blog saveBlog(Blog blog) {
         // 博客首次提交的id为null
         if (blog.getId() == null) {

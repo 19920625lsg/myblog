@@ -50,15 +50,23 @@ public class BlogController {
      * @return
      */
     @GetMapping("/blogs")
-    public String blogs(@PageableDefault(size = 2, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
+    public String blogs(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
         model.addAttribute("types", typeService.listType());
         model.addAttribute("page", blogService.listBlog(pageable, blog));
         return BLOG_LIST;
     }
 
 
+    /**
+     * 根据分类、标签、是否推荐进行博客筛选
+     *
+     * @param pageable 分页对象
+     * @param blog     博客对象
+     * @param model    传给前端的model
+     * @return 返回一页博客
+     */
     @PostMapping("/blogs/search")
-    public String blogsSearch(@PageableDefault(size = 2, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
+    public String blogsSearch(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
         model.addAttribute("page", blogService.listBlog(pageable, blog));
         return "admin/blogs :: blogList";
     }

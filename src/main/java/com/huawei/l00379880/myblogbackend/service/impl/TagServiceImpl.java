@@ -7,7 +7,9 @@ import com.huawei.l00379880.myblogbackend.service.TagService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,6 +68,14 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<Tag> listTag(String ids) {
         return tagRepository.findAll(convertToList(ids));
+    }
+
+    @Override
+    public List<Tag> listTagTop(Integer size) {
+        // 按照该标签下的博客的数据进行排序,越靠上的标签博客数越多
+        Sort sort = new Sort(Sort.Direction.DESC, "blogs.size");
+        Pageable pageable = new PageRequest(0, size, sort);
+        return tagRepository.findTop(pageable);
     }
 
     @Override

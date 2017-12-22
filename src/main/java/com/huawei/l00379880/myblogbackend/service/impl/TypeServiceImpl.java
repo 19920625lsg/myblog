@@ -7,7 +7,9 @@ import com.huawei.l00379880.myblogbackend.service.TypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +51,14 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public List<Type> listType() {
         return typeRepository.findAll();
+    }
+
+    @Override
+    public List<Type> listTypeTop(Integer size) {
+        // 按照该分类下的博客的数据进行排序,越考上的分类博客数越多
+        Sort sort = new Sort(Sort.Direction.DESC, "blogs.size");
+        Pageable pageable = new PageRequest(0, size, sort);
+        return typeRepository.findTop(pageable);
     }
 
     @Override

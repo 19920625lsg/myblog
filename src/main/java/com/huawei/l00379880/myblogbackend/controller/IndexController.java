@@ -1,7 +1,15 @@
 package com.huawei.l00379880.myblogbackend.controller;
 
 import com.huawei.l00379880.myblogbackend.exception.NotFoundException;
+import com.huawei.l00379880.myblogbackend.service.BlogService;
+import com.huawei.l00379880.myblogbackend.service.TagService;
+import com.huawei.l00379880.myblogbackend.service.TypeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -13,6 +21,15 @@ import org.springframework.web.bind.annotation.PathVariable;
  ***********************************************************/
 @Controller
 public class IndexController {
+
+    @Autowired
+    private BlogService blogService;
+
+    @Autowired
+    private TypeService typeService;
+
+    @Autowired
+    private TagService tagService;
 
     @GetMapping("/about")
     String about() {
@@ -30,12 +47,19 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    String index() {
+    String index(@PageableDefault(size = 8, sort = {"updateTime"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        model.addAttribute("page", blogService.listBlog(pageable));
+        // 取前8个分类,按照该分类下的博客的数据进行排序,越考上的分类博客数越多
+        model.addAttribute("types", typeService.listTypeTop(8));
+        model.addAttribute("tags", tagService.listTagTop(15));
         return "index";
     }
 
     @GetMapping("/index")
-    String index2() {
+    String index2(@PageableDefault(size = 8, sort = {"updateTime"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        model.addAttribute("page", blogService.listBlog(pageable));
         return "index";
     }
 

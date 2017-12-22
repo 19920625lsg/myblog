@@ -40,7 +40,20 @@ public interface TypeService {
     Page<Type> listType(Pageable pageable);
 
 
+    /**
+     * 获取所有分类
+     *
+     * @return
+     */
     List<Type> listType();
+
+    /**
+     * 获取前size个分类
+     *
+     * @param size
+     * @return
+     */
+    List<Type> listTypeTop(Integer size);
 
     /**
      * 更新分类
