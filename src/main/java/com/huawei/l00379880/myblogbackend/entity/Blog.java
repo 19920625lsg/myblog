@@ -73,6 +73,11 @@ public class Blog {
      */
     @Transient
     private String tagIds;
+
+    /**
+     * 博客描述
+     */
+    private String description;
     /**
      * 创建时间
      */
