@@ -15,7 +15,9 @@ import com.huawei.l00379880.myblogbackend.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,12 +74,20 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public List<Blog> listTopRecommendedBlog(Integer size) {
+        // 按照该分类下的博客的更新事件进行排序.已经在repository中选取访问量最大的几个博客了
+        Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
+        Pageable pageable = new PageRequest(0, size, sort);
+        return blogRepository.findTopRecommended(pageable);
+    }
+
+    @Override
     public Blog saveBlog(Blog blog) {
         // 博客首次提交的id为null
         if (blog.getId() == null) {
             blog.setCreateTime(new Date());
             blog.setVisits(0);
-        }else {
+        } else {
             // 这种情况为保存,所以之前的createTime因为不能再前端展示,所以这里获取一下数据库现有地
             blog.setCreateTime(blogRepository.getOne(blog.getId()).getCreateTime());
         }

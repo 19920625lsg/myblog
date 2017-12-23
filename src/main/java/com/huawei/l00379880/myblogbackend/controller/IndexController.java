@@ -46,20 +46,31 @@ public class IndexController {
         return "blog";
     }
 
-    @GetMapping("/")
-    String index(@PageableDefault(size = 8, sort = {"updateTime"},
-            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+    /**
+     * 前端的博客、分类、标签、博客推荐等的model返回
+     *
+     * @param model 返回给前端的Model
+     */
+    private void addModel(Pageable pageable, Model model) {
         model.addAttribute("page", blogService.listBlog(pageable));
         // 取前8个分类,按照该分类下的博客的数据进行排序,越考上的分类博客数越多
         model.addAttribute("types", typeService.listTypeTop(8));
         model.addAttribute("tags", tagService.listTagTop(15));
+        // 获取8个推荐博客
+        model.addAttribute("recommendedBlogs", blogService.listTopRecommendedBlog(8));
+    }
+
+    @GetMapping("/")
+    String index(@PageableDefault(size = 8, sort = {"updateTime"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        addModel(pageable, model);
         return "index";
     }
 
     @GetMapping("/index")
     String index2(@PageableDefault(size = 8, sort = {"updateTime"},
             direction = Sort.Direction.DESC) Pageable pageable, Model model) {
-        model.addAttribute("page", blogService.listBlog(pageable));
+        addModel(pageable, model);
         return "index";
     }
 
