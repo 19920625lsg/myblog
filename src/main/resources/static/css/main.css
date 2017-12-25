@@ -22,6 +22,13 @@ body {
     padding: 0.3em !important;
 }
 
+/*首页标签的大小*/
+.my-index-type-size {
+    height: 21px;
+    width: 60px;
+    text-align: center;
+}
+
 .my-padding-small {
     padding-top: 0.5em !important;
     padding-bottom: 0.5em !important;
@@ -31,9 +38,11 @@ body {
     padding-top: 1em !important;
     padding-bottom: 1em !important;
 }
-.my-padding-all{
+
+.my-padding-all {
     padding: 1em !important;
 }
+
 .my-padding-large {
     padding: 2em !important;
 }
@@ -136,6 +145,10 @@ body {
 
 .my-black {
     color: #333;
+}
+
+.my-green {
+    color: #00B5AD;
 }
 
 /*布局*/

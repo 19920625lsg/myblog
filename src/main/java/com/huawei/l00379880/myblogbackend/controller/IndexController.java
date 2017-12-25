@@ -61,14 +61,14 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    String index(@PageableDefault(size = 8, sort = {"updateTime"},
+    String index(@PageableDefault(size = 7, sort = {"updateTime"},
             direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         addModel(pageable, model);
         return "index";
     }
 
     @GetMapping("/index")
-    String index2(@PageableDefault(size = 8, sort = {"updateTime"},
+    String index2(@PageableDefault(size = 7, sort = {"updateTime"},
             direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         addModel(pageable, model);
         return "index";
