@@ -57,18 +57,18 @@ public class IndexController {
         model.addAttribute("types", typeService.listTypeTop(8));
         model.addAttribute("tags", tagService.listTagTop(15));
         // 获取8个推荐博客
-        model.addAttribute("recommendedBlogs", blogService.listTopRecommendedBlog(8));
+        model.addAttribute("recommendedBlogs", blogService.listTopRecommendedBlog(5));
     }
 
     @GetMapping("/")
-    String index(@PageableDefault(size = 7, sort = {"updateTime"},
+    String index(@PageableDefault(size = 6, sort = {"updateTime"},
             direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         addModel(pageable, model);
         return "index";
     }
 
     @GetMapping("/index")
-    String index2(@PageableDefault(size = 7, sort = {"updateTime"},
+    String index2(@PageableDefault(size = 6, sort = {"updateTime"},
             direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         addModel(pageable, model);
         return "index";

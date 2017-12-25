@@ -98,59 +98,17 @@
                                 <i class="tags icon"></i>分类
                             </div>
                             <div class="right aligned column">
-                                <a href="#" target="_blank">more<i class="angle double right icon"></i></a>
+                                <a href="#" th:href="@{/types}" target="_blank">more<i class="angle double right icon"></i></a>
                             </div>
                         </div>
                     </div>
 
                     <div class="ui teal segment">
                         <!--fluid是填充满外层容器-->
-                        <div class="ui vertical fluid menu">
+                        <div class="ui vertical fluid menu" th:each="type : ${types}">
                             <a href="#" class="item">
-                                编程学习
-                                <div class="ui teal basic left pointing label">13</div>
-                            </a>
-                        </div>
-                        <div class="ui vertical fluid menu">
-                            <a href="#" class="item">
-                                技术笔记
-                                <div class="ui teal basic left pointing label">56</div>
-                            </a>
-                        </div>
-                        <div class="ui vertical fluid menu">
-                            <a href="#" class="item">
-                                职业发展
-                                <div class="ui teal basic left pointing label">18</div>
-                            </a>
-                        </div>
-                        <div class="ui vertical fluid menu">
-                            <a href="#" class="item">
-                                编程学习
-                                <div class="ui teal basic left pointing label">13</div>
-                            </a>
-                        </div>
-                        <div class="ui vertical fluid menu">
-                            <a href="#" class="item">
-                                技术笔记
-                                <div class="ui teal basic left pointing label">56</div>
-                            </a>
-                        </div>
-                        <div class="ui vertical fluid menu">
-                            <a href="#" class="item">
-                                职业发展
-                                <div class="ui teal basic left pointing label">18</div>
-                            </a>
-                        </div>
-                        <div class="ui vertical fluid menu">
-                            <a href="#" class="item">
-                                技术笔记
-                                <div class="ui teal basic left pointing label">56</div>
-                            </a>
-                        </div>
-                        <div class="ui vertical fluid menu">
-                            <a href="#" class="item">
-                                职业发展
-                                <div class="ui teal basic left pointing label">18</div>
+                                <span th:text="${type.name}"></span>
+                                <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
                             </a>
                         </div>
                     </div>
@@ -164,70 +122,14 @@
                                 <i class="bookmark icon"></i>标签
                             </div>
                             <div class="right aligned column">
-                                <a href="#" target="_blank">more<i class="angle double right icon"></i></a>
+                                <a href="#" th:href="@{/tags}" target="_blank">more<i class="angle double right icon"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="ui teal segment">
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            方法论
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            诗
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            编程
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            方法论
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            诗
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            编程
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            方法论
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            诗
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            编程
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            方法论
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            诗
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            编程
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            方法论
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            诗
-                            <div class="detail">28</div>
-                        </a>
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny">
-                            编程
-                            <div class="detail">28</div>
+                        <a href="#" class="ui teal basic left pointing label my-margin-tiny" th:each="tag : ${tags}">
+                            <span th:text="${tag.name}"></span>
+                            <div class="detail" th:text="${#arrays.length(tag.blogs)}">28</div>
                         </a>
                     </div>
                 </div>
@@ -239,32 +141,8 @@
                             <i class="bookmark icon"></i>最新推荐
                         </div>
                     </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="my-black my-text-thin">用户故事1</a>
-                    </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="my-black my-text-thin">用户故事2</a>
-                    </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="my-black my-text-thin">用户故事3</a>
-                    </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="my-black my-text-thin">用户故事1</a>
-                    </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="my-black my-text-thin">用户故事2</a>
-                    </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="my-black my-text-thin">用户故事3</a>
-                    </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="my-black my-text-thin">用户故事1</a>
-                    </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="my-black my-text-thin">用户故事2</a>
-                    </div>
-                    <div class="ui segment">
-                        <a href="#" target="_blank" class="my-black my-text-thin">用户故事3</a>
+                    <div class="ui segment" th:each="recommendedBlog : ${recommendedBlogs}">
+                        <a href="#" th:href="@{/blog/{id}(id=${recommendedBlog.id})}" target="_blank" class="my-black my-text-thin" th:text="${recommendedBlog.title}">用户故事1</a>
                     </div>
                 </div>
                 <!--二维码-->
