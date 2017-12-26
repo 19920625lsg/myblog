@@ -15,7 +15,21 @@ import java.util.List;
 
 public interface BlogService {
 
+    /**
+     * 根据id获取博客
+     *
+     * @param id 博客主键
+     * @return
+     */
     Blog getBlog(Long id);
+
+    /**
+     * 根据ID获取博客并进行markdown转换
+     *
+     * @param id 博客主键
+     * @return
+     */
+    Blog getAndConvertBlog(Long id);
 
     /**
      * 博客管理页,根据BlogQuery里的查询条件进行分页查询

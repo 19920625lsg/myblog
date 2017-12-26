@@ -59,7 +59,7 @@
             </div>
             <h2 class="ui center aligned header" th:text="${blog.title}">梅西获颁欧洲金靴奖</h2>
             <!--博客主题内容,加js-toc-content是为了利用tocbot插件来生成目录-->
-            <div id="content" class="typo typo-selection js-toc-content my-padded-left-right-resp my-padding-large" th:text="${blog.content}">
+            <div id="content" class="typo typo-selection js-toc-content my-padded-left-right-resp my-padding-large" th:utext="${blog.content}">
                 <!--<h1 id="codetest">代码高亮测试：prism，必须指定语言</h1>-->
             </div>
             <!--赞赏-->
@@ -235,7 +235,7 @@
 <!--自定义的要放在最后，要不一些jQuery事件绑定不到控件上-->
 <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
 </body>
-<script>
+<script th:inline="javascript">
     // 自动生成目录
     tocbot.init({
         // Where to render the table of contents.
@@ -255,13 +255,15 @@
     });
 
     // 生成二维码
-    var qrcode = new QRCode(document.getElementById("myqrcode"), {
-        text: "http://jindo.dev.naver.com/collie",
-        width: 128,
-        height: 128,
-        colorDark: "#000000",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
+    var serurl = "http://liangshanguang.wang";
+    var url = /*[[@{/blog/{id}(id=${blog.id})}]]*/"";
+    var qrcode = new QRCode("myqrcode", {
+        text: serurl+url,
+        width: 110,
+        height: 110,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
     });
 
     // 页面平滑地滚动到最上端

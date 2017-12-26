@@ -11,6 +11,7 @@ import com.huawei.l00379880.myblogbackend.entity.Type;
 import com.huawei.l00379880.myblogbackend.exception.NotFoundException;
 import com.huawei.l00379880.myblogbackend.repository.BlogRepository;
 import com.huawei.l00379880.myblogbackend.service.BlogService;
+import com.huawei.l00379880.myblogbackend.service.util.MarkdownUtil;
 import com.huawei.l00379880.myblogbackend.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,21 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getBlog(Long id) {
         return blogRepository.findOne(id);
+    }
+
+    @Override
+    public Blog getAndConvertBlog(Long id) {
+        Blog blog = blogRepository.findOne(id);
+        if (blog == null) {
+            throw new NotFoundException("博客未找到");
+        }
+        // 之所以要新建blog对象是因为直接在原blog对象上修改的话会因为hibernate session的问题导致content被更新到数据库中，
+        // 成为html的内容
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog, b);
+        String content = b.getContent();
+        b.setContent(MarkdownUtil.markdownToHtmlExtensions(content));
+        return b;
     }
 
     @Override
