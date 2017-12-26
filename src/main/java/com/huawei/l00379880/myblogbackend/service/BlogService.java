@@ -35,6 +35,15 @@ public interface BlogService {
     Page<Blog> listBlog(Pageable pageable);
 
     /**
+     * 搜索根据关键词进行分页查询,查询标题(title)、描述(description)、博客内容(content)是不是包含关键词
+     *
+     * @param query    查询关键词
+     * @param pageable 分页对象
+     * @return
+     */
+    Page<Blog> listBlog(String query, Pageable pageable);
+
+    /**
      * 获取前size条博客,首先是推荐的,其次是访问量
      *
      * @param size 推荐的博客

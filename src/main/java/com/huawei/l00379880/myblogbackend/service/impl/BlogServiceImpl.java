@@ -74,6 +74,12 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public Page<Blog> listBlog(String query, Pageable pageable) {
+        // 加上两个%是为了进行模糊查询
+        return blogRepository.findByQuery("%" + query + "%", pageable);
+    }
+
+    @Override
     public List<Blog> listTopRecommendedBlog(Integer size) {
         // 按照该分类下的博客的更新事件进行排序.已经在repository中选取访问量最大的几个博客了
         Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
