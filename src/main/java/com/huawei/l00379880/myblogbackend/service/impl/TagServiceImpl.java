@@ -23,7 +23,7 @@ import java.util.List;
  * @email       : liangshanguang2@gmail.com
  ***********************************************************/
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class TagServiceImpl implements TagService {
 
     @Autowired

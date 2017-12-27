@@ -6,6 +6,7 @@ import com.huawei.l00379880.myblogbackend.service.UserService;
 import com.huawei.l00379880.myblogbackend.service.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /***********************************************************
  * @Description : 用户接口实现类
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @email       : liangshanguang2@gmail.com
  ***********************************************************/
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class UserServiceImpl implements UserService {
 
     @Autowired
