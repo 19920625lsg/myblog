@@ -2,6 +2,7 @@ package com.huawei.l00379880.myblogbackend.controller;
 
 import com.huawei.l00379880.myblogbackend.exception.NotFoundException;
 import com.huawei.l00379880.myblogbackend.service.BlogService;
+import com.huawei.l00379880.myblogbackend.service.CommentService;
 import com.huawei.l00379880.myblogbackend.service.TagService;
 import com.huawei.l00379880.myblogbackend.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class IndexController {
     @Autowired
     private TagService tagService;
 
+    @Autowired
+    private CommentService commentService;
+
     @GetMapping("/about")
     String about() {
         return "about";
@@ -46,6 +50,8 @@ public class IndexController {
     @GetMapping("/blog/{id}")
     String blog(@PathVariable Long id, Model model) {
         model.addAttribute("blog", blogService.getAndConvertBlog(id));
+        // 获取指定博客下的评论列表
+        model.addAttribute("comments", commentService.getCommentListByBlogId(id));
         return "blog";
     }
 

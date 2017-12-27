@@ -118,76 +118,51 @@
                     <!--threaded是为了区分不同用户的评论,加一条竖着的虚线-->
                     <div class="ui threaded comments" style="max-width: 100%">
                         <h3 class="ui dividing header">评论</h3>
-                        <div class="comment">
+                        <div class="comment" th:each="comment : ${comments}">
                             <a class="avatar">
-                                <img src="../static/images/avatar/avatar4.jpg" th:src="@{/images/avatar/avatar4.jpg}">
+                                <img src="../static/images/avatar/avatar4.jpg" th:src="@{${comment.avatar}}">
                             </a>
                             <div class="content">
-                                <a class="author">Matt</a>
+                                <a class="author" th:text="${comment.nickname}">Matt</a>
                                 <div class="metadata">
-                                    <span class="date">Today at 5:42PM</span>
+                                    <span class="date"
+                                          th:text="${#dates.format(comment.createTime,'yyyy-MM-dd hh:MM:ss')}"></span>
                                 </div>
-                                <div class="text">
+                                <div class="text" th:text="${comment.content}">
                                     How artistic!
                                 </div>
                                 <div class="actions">
                                     <!--回复指定人-->
                                     <a class="reply" data-commentid="1" data-commentnickname="Matt"
+                                       th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickname}"
                                        onclick="reply(this)">回复</a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="comment">
-                            <a class="avatar">
-                                <img src="../static/images/avatar/avatar1.jpg" th:src="@{/images/avatar/avatar1.jpg}">
-                            </a>
-                            <div class="content">
-                                <a class="author">Elliot Fu</a>
-                                <div class="metadata">
-                                    <span class="date">Yesterday at 12:30AM</span>
-                                </div>
-                                <div class="text">
-                                    <p>This has been very useful for my research. Thanks as well!</p>
-                                </div>
-                                <div class="actions">
-                                    <a class="reply">回复</a>
-                                </div>
-                            </div>
-                            <div class="comments">
-                                <div class="comment">
+                            <!--th:if是因为有子评论的时候才会显示-->
+                            <div class="comments" th:if="${#arrays.length(comment.replyComments)}>0">
+                                <div class="comment" th:each="reply : ${comment.replyComments}">
                                     <a class="avatar">
-                                        <img src="../static/images/avatar/avatar2.jpg"
-                                             th:src="@{/images/avatar/avatar2.jpg}">
+                                        <img src="../static/images/avatar/avatar4.jpg" th:src="@{${reply.avatar}}">
                                     </a>
                                     <div class="content">
-                                        <a class="author">Jenny Hess</a>
+                                        <a class="author">
+                                            <span th:text="${reply.nickname}">Matt</span>
+                                            <span th:text="'@'+${reply.parentComment.nickname}" class="my-teal"></span>
+                                        </a>
                                         <div class="metadata">
-                                            <span class="date">Just now</span>
+                                    <span class="date"
+                                          th:text="${#dates.format(reply.createTime,'yyyy-MM-dd hh:MM:ss')}"></span>
                                         </div>
-                                        <div class="text">
-                                            Elliot you are always so right :)
+                                        <div class="text" th:text="${reply.content}">
+                                            How artistic!
                                         </div>
                                         <div class="actions">
-                                            <a class="reply">回复</a>
+                                            <!--回复指定人-->
+                                            <a class="reply" data-commentid="1" data-commentnickname="Matt"
+                                               th:attr="data-commentid=${reply.id},data-commentnickname=${reply.nickname}"
+                                               onclick="reply(this)">回复</a>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <a class="avatar">
-                                <img src="../static/images/avatar/avatar3.jpg" th:src="@{/images/avatar/avatar3.jpg}">
-                            </a>
-                            <div class="content">
-                                <a class="author">Joe Henderson</a>
-                                <div class="metadata">
-                                    <span class="date">5 days ago</span>
-                                </div>
-                                <div class="text">
-                                    Dude, this is awesome. Thanks so much
-                                </div>
-                                <div class="actions">
-                                    <a class="reply">回复</a>
                                 </div>
                             </div>
                         </div>

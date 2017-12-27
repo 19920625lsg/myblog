@@ -39,12 +39,9 @@ public class CommentController {
         // 前端传过来的只有
         Long blogId = comment.getBlog().getId();
         comment.setBlog(blogService.getBlog(blogId));
+        // 获取该昵称的头像,如果之前存在的话就用之前的
+        comment.setAvatar(commentService.getAvatar(comment.getNickname(), comment.getEmail()));
         commentService.saveComment(comment);
-        // 生成[0,10]之间的整数,然后我们自己组成avatar的路径,随机选一个头像
-        int avatarNum = new Random().nextInt(15);
-        // 随机选一个static/images/avatar/路径下的一个图片,作为头像
-        String avatar = "/images/avatar/avatar" + avatarNum + ".jpg";
-        comment.setAvatar(avatar);
         // 传入"blog.id"
         return "redirect:/comments/" + comment.getBlog().getId();
     }

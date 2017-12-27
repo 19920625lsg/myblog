@@ -144,11 +144,15 @@ body {
 /****颜色主题设置****/
 
 .my-black {
-    color: #333;
+    color: #333 !important;
 }
 
 .my-green {
-    color: #00B5AD;
+    color: #00B5AD !important;
+}
+
+.my-teal {
+    color: #00B5AD !important;
 }
 
 /*布局*/

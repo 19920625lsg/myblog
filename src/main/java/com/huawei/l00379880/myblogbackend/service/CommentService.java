@@ -26,4 +26,12 @@ public interface CommentService {
      * @return 保存成功返回原对象, 否则返回Null
      */
     Comment saveComment(Comment comment);
+
+    /**
+     * 判断该昵称是否已经存在 存在的话就头像应该和之前的一样
+     *
+     * @param nickname 评论用户的头像
+     * @return 昵称是否存在
+     */
+    String getAvatar(String nickname, String email);
 }
