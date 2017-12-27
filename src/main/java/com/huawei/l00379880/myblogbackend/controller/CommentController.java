@@ -1,6 +1,7 @@
 package com.huawei.l00379880.myblogbackend.controller;
 
 import com.huawei.l00379880.myblogbackend.entity.Comment;
+import com.huawei.l00379880.myblogbackend.entity.User;
 import com.huawei.l00379880.myblogbackend.service.BlogService;
 import com.huawei.l00379880.myblogbackend.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.Random;
 
 /***********************************************************
@@ -35,12 +37,23 @@ public class CommentController {
     }
 
     @PostMapping("/comments")
-    public String post(Comment comment) {
+    public String post(Comment comment, HttpSession session) {
         // 前端传过来的只有
         Long blogId = comment.getBlog().getId();
         comment.setBlog(blogService.getBlog(blogId));
-        // 获取该昵称的头像,如果之前存在的话就用之前的
-        comment.setAvatar(commentService.getAvatar(comment.getNickname(), comment.getEmail()));
+        // 看看管理员是否登录
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            comment.setAvatar(user.getAvatar());
+            comment.setAdmin(true);
+        } else {
+            // 管理员没登录
+            // 获取该昵称的头像,如果之前存在的话就用之前的
+            comment.setAvatar(commentService.getAvatar(comment.getNickname(), comment.getEmail()));
+            // 不是管理员
+            comment.setAdmin(false);
+        }
+
         commentService.saveComment(comment);
         // 传入"blog.id"
         return "redirect:/comments/" + comment.getBlog().getId();

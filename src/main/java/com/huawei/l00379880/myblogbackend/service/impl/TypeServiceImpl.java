@@ -77,4 +77,9 @@ public class TypeServiceImpl implements TypeService {
     public void deleteType(Long id) {
         typeRepository.delete(id);
     }
+
+    @Override
+    public List<Type> findAll() {
+        return typeRepository.findAll();
+    }
 }

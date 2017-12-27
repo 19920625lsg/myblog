@@ -65,4 +65,9 @@ public class Comment {
      */
     @ManyToOne
     private Comment parentComment;
+
+    /**
+     * 是否是管理员，这个标志位不存到数据库中
+     */
+    private boolean admin;
 }

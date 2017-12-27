@@ -95,10 +95,10 @@
                 </div>
                 <div class="ten wide column">
                     <div class="list">
-                        <li>作者姓名：<span th:text="${blog.user.nickname}">梁山广</span></li>
+                        <li>文章题目：<span th:text="${blog.title}">梁山广</span>
                         <li>发表时间：<span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd hh:MM:ss')}"></span></li>
-                        <li>开源主页：https://github.com/19920625lsg</li>
-                        <li>工作信息：华为--无线产品线--高级软件工程师</li>
+                        <li>作者姓名：<span th:text="${blog.user.nickname}">梁山广</span></li>
+                        <li>作者职业：华为--无线产品线--高级软件工程师</li>
                         <li>版权声明：自由转载，但请保留此块作者相关信息</li>
                     </div>
                 </div>
@@ -123,7 +123,12 @@
                                 <img src="../static/images/avatar/avatar4.jpg" th:src="@{${comment.avatar}}">
                             </a>
                             <div class="content">
-                                <a class="author" th:text="${comment.nickname}">Matt</a>
+                                <a class="author">
+                                    <span th:text="${comment.nickname}">Matt</span>
+                                    <div class="ui mini basic red left pointing label my-padding-mini"
+                                         th:if="${comment.admin}">博主
+                                    </div>
+                                </a>
                                 <div class="metadata">
                                     <span class="date"
                                           th:text="${#dates.format(comment.createTime,'yyyy-MM-dd hh:MM:ss')}"></span>
@@ -147,6 +152,9 @@
                                     <div class="content">
                                         <a class="author">
                                             <span th:text="${reply.nickname}">Matt</span>
+                                            <div class="ui mini basic red left pointing label my-padding-mini"
+                                                 th:if="${reply.admin}">博主
+                                            </div>&nbsp;
                                             <span th:text="'@'+${reply.parentComment.nickname}" class="my-teal"></span>
                                         </a>
                                         <div class="metadata">
@@ -182,13 +190,15 @@
                     <div class="field my-mobile-full my-margin-bottom-small">
                         <div class="ui left icon input">
                             <i class="user icon"></i>
-                            <input type="text" name="nickname" placeholder="昵称"/>
+                            <input type="text" name="nickname" placeholder="昵称"
+                                   th:value="${session.user}!=null ? ${session.user.nickname}"/>
                         </div>
                     </div>
                     <div class="field my-mobile-full my-margin-bottom-small">
                         <div class="ui left icon input">
                             <i class="mail icon"></i>
-                            <input type="email" name="email" placeholder="邮箱"/>
+                            <input type="email" name="email" placeholder="邮箱"
+                                   th:value="${session.user}!=null ? ${session.user.email}"/>
                         </div>
                     </div>
                     <div class="field my-margin-bottom-small my-mobile-full">

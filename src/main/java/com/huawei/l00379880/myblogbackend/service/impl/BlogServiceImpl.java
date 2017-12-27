@@ -49,6 +49,8 @@ public class BlogServiceImpl implements BlogService {
         if (blog == null) {
             throw new NotFoundException("博客未找到");
         }
+        // 找到博客，则对对应id的博客的访问量加1
+        blogRepository.updateVisits(id);
         // 之所以要新建blog对象是因为直接在原blog对象上修改的话会因为hibernate session的问题导致content被更新到数据库中，
         // 成为html的内容
         Blog b = new Blog();

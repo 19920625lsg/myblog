@@ -1,10 +1,12 @@
 package com.huawei.l00379880.myblogbackend.controller;
 
+import com.huawei.l00379880.myblogbackend.entity.Type;
 import com.huawei.l00379880.myblogbackend.exception.NotFoundException;
 import com.huawei.l00379880.myblogbackend.service.BlogService;
 import com.huawei.l00379880.myblogbackend.service.CommentService;
 import com.huawei.l00379880.myblogbackend.service.TagService;
 import com.huawei.l00379880.myblogbackend.service.TypeService;
+import com.huawei.l00379880.myblogbackend.vo.BlogQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /***********************************************************
  * @Description : 配置各个模块的访问路由
@@ -49,6 +53,7 @@ public class IndexController {
 
     @GetMapping("/blog/{id}")
     String blog(@PathVariable Long id, Model model) {
+        // 在getAndConvertBlog方法中实现访问量自增了
         model.addAttribute("blog", blogService.getAndConvertBlog(id));
         // 获取指定博客下的评论列表
         model.addAttribute("comments", commentService.getCommentListByBlogId(id));
@@ -88,8 +93,25 @@ public class IndexController {
         return "tags";
     }
 
-    @GetMapping("/types")
-    String types() {
+    /**
+     * @param id 活跃的分类的ID
+     * @return 返回到分类页面
+     */
+    @GetMapping("/types/{id}")
+    String types(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+                 @PathVariable Long id, Model model) {
+        List<Type> types = typeService.findAll();
+        model.addAttribute("types", types);
+        if (id == -1) {
+            // 说明是从导航栏直接点击过来地.那么就把第一个分类作为活跃分类
+            id = types.get(0).getId();
+        }
+        // 根据typeId进行下面所属博客数目的查询
+        BlogQuery blogQuery = new BlogQuery();
+        blogQuery.setTypeId(id);
+        model.addAttribute("page", blogService.listBlog(pageable, blogQuery));
+        // 返回当前活跃的typeId
+        model.addAttribute("activeTypeId", id);
         return "types";
     }
 
@@ -99,35 +121,6 @@ public class IndexController {
         model.addAttribute("page", blogService.listBlog(query, pageable));
         model.addAttribute("query", query);
         return "search";
-    }
-
-
-    /**
-     * 被0除的非常规的异常,所以根据ControllerExceptionHandler可以要跳转到error.html页面
-     */
-    @GetMapping("/errorTest")
-    String errorTest() {
-        int i = 9 / 0;
-        return "index";
-    }
-
-    /**
-     * 常规操作,返回SpringBoot官方的处理,这里是NOT_FOUND即404错误(在类NotFoundException中有)
-     */
-    @GetMapping("/notfindTest")
-    String notfindTest() {
-        String blog = null;
-        if (blog == null) {
-            throw new NotFoundException("异常:博客找不到...");
-        }
-        return "index";
-    }
-
-    @GetMapping("/LogAspectTest/{id}/{name}")
-    String logAspectTest(@PathVariable Integer id, @PathVariable String name) {
-
-        System.out.println("------------------in LogAspectTest--------------------");
-        return "index";
     }
 
 }

@@ -70,4 +70,11 @@ public interface TypeService {
      * @param id 待删除分类的id
      */
     void deleteType(Long id);
+
+    /**
+     * 查询所有的分类
+     *
+     * @return 所有的分类
+     */
+    List<Type> findAll();
 }
