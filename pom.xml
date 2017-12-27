@@ -75,12 +75,12 @@
 			<artifactId>commonmark-ext-heading-anchor</artifactId>
 			<version>0.10.0</version>
 		</dependency>
-        <!-- https://mvnrepository.com/artifact/com.atlassian.commonmark/commonmark-ext-gfm-tables -->
-        <dependency>
-            <groupId>com.atlassian.commonmark</groupId>
-            <artifactId>commonmark-ext-gfm-tables</artifactId>
-            <version>0.10.0</version>
-        </dependency>
+		<!-- https://mvnrepository.com/artifact/com.atlassian.commonmark/commonmark-ext-gfm-tables -->
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark-ext-gfm-tables</artifactId>
+			<version>0.10.0</version>
+		</dependency>
 
     </dependencies>
 

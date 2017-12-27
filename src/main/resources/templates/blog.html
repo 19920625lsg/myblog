@@ -17,7 +17,8 @@
         <div class="ui top attached segment">
             <div class="ui horizontal link list">
                 <div class="item">
-                    <img src="https://picsum.photos/100/100?image=1027"  th:src="@{${blog.user.avatar}}" class="ui avatar image"/>
+                    <img src="https://picsum.photos/100/100?image=1027" th:src="@{${blog.user.avatar}}"
+                         class="ui avatar image"/>
                     <div class="content">
                         <a href="#" th:text="${blog.user.nickname}" class="header">梁山广</a>
                     </div>
@@ -51,7 +52,8 @@
                 <div class="eight wide column">
                     <!--要想让某块居右，必须要放在一个ui container中-->
                     <div class="ui right aligned container">
-                        <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">
+                        <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}"
+                             th:text="${tag.name}">
                             体育
                         </div>
                     </div>
@@ -59,7 +61,8 @@
             </div>
             <h2 class="ui center aligned header" th:text="${blog.title}">梅西获颁欧洲金靴奖</h2>
             <!--博客主题内容,加js-toc-content是为了利用tocbot插件来生成目录-->
-            <div id="content" class="typo typo-selection js-toc-content my-padded-left-right-resp my-padding-large" th:utext="${blog.content}">
+            <div id="content" class="typo typo-selection js-toc-content my-padded-left-right-resp my-padding-large"
+                 th:utext="${blog.content}">
                 <!--<h1 id="codetest">代码高亮测试：prism，必须指定语言</h1>-->
             </div>
             <!--赞赏-->
@@ -71,11 +74,13 @@
                 <div class="ui orange basic label">
                     <div class="ui images" style="font-size: inherit !important;">
                         <div class="image">
-                            <img src="../static/images/alipay.png" th:src="@{/images/alipay.png}" class="ui rounded bordered image" style="width: 120px;"/>
+                            <img src="../static/images/alipay.png" th:src="@{/images/alipay.png}"
+                                 class="ui rounded bordered image" style="width: 120px;"/>
                             <div>支付宝</div>
                         </div>
                         <div class="image">
-                            <img src="../static/images/weixin.png" th:src="@{/images/weixin.png}" class="ui rounded bordered image" style="width: 120px;"/>
+                            <img src="../static/images/weixin.png" th:src="@{/images/weixin.png}"
+                                 class="ui rounded bordered image" style="width: 120px;"/>
                             <div>微信</div>
                         </div>
                     </div>
@@ -98,7 +103,8 @@
                     </div>
                 </div>
                 <div class="four wide column">
-                    <img src="../static/images/me.jpg" th:src="@{/images/me.jpg}" class="ui right floated rounded bordered image" style="width: 110px;"/>
+                    <img src="../static/images/me.jpg" th:src="@{/images/me.jpg}"
+                         class="ui right floated rounded bordered image" style="width: 110px;"/>
                 </div>
                 <div class="one wide column">
 
@@ -146,7 +152,8 @@
                         <div class="comments">
                             <div class="comment">
                                 <a class="avatar">
-                                    <img src="../static/images/avatar/avatar2.jpg" th:src="@{/images/avatar/avatar2.jpg}">
+                                    <img src="../static/images/avatar/avatar2.jpg"
+                                         th:src="@{/images/avatar/avatar2.jpg}">
                                 </a>
                                 <div class="content">
                                     <a class="author">Jenny Hess</a>
@@ -258,12 +265,12 @@
     var serurl = "http://liangshanguang.wang";
     var url = /*[[@{/blog/{id}(id=${blog.id})}]]*/"";
     var qrcode = new QRCode("myqrcode", {
-        text: serurl+url,
+        text: serurl + url,
         width: 110,
         height: 110,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
     });
 
     // 页面平滑地滚动到最上端
@@ -285,5 +292,10 @@
             }
         }
     })
+
+    // 添加行号
+    $('pre').addClass("line-numbers");
+    // 如果要自动换行的话
+    // $('pre').addClass("line-numbers").css("white-space", "pre-wrap");
 </script>
 </html>
