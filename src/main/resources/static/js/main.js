@@ -11,12 +11,6 @@ $('#payBtn').popup({
     on: 'hover',
     position: 'bottom center'
 });
-// 工具栏中目录生成功能的按钮
-$('#categoryBtn').popup({
-    popup: $('.category-container.popup'),
-    on: 'click',
-    position: 'left center'
-});
 
 // about.html
 // 个人联系方式的弹出

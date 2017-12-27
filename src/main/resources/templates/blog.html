@@ -243,6 +243,7 @@
 <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
 </body>
 <script th:inline="javascript">
+
     // 自动生成目录
     tocbot.init({
         // Where to render the table of contents.
@@ -253,6 +254,14 @@
         // ,我自己加上了h4、h5、h6,但是发现不行,会出bug地.点击目录的时候全乱了
         headingSelector: 'h1, h2, h3'
     });
+
+    // 工具栏中目录生成功能的按钮,始终显示在上方把
+    $('#categoryBtn').popup({
+        popup: $('.category-container.popup'),
+        on: 'click',
+        position: 'top center'
+    });
+
 
     // 扫描二维码查看页面
     $('#myQR').popup({
