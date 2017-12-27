@@ -29,7 +29,8 @@
                 </div>
                 <!--content-->
                 <div class="ui attached segment">
-                    <div class="ui padded vertical segment my-padding-large my-mobile-left-right-clear" th:each="blog : ${page.content}">
+                    <div class="ui padded vertical segment my-padding-large my-mobile-left-right-clear"
+                         th:each="blog : ${page.content}">
                         <!--middle aligned实现图片居中-->
                         <div class="ui middle aligned mobile reversed stackable grid">
                             <div class="eleven wide column">
@@ -98,7 +99,9 @@
                                 <i class="tags icon"></i>分类
                             </div>
                             <div class="right aligned column">
-                                <a href="#" th:href="@{/types}" target="_blank">more<i class="angle double right icon"></i></a>
+                                <a href="#" th:href="@{/types/-1}" target="_blank">more
+                                    <i class="angle double right icon"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -108,7 +111,9 @@
                         <div class="ui vertical fluid menu" th:each="type : ${types}">
                             <a href="#" class="item">
                                 <span th:text="${type.name}"></span>
-                                <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
+                                <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">
+                                    13
+                                </div>
                             </a>
                         </div>
                     </div>
@@ -122,7 +127,8 @@
                                 <i class="bookmark icon"></i>标签
                             </div>
                             <div class="right aligned column">
-                                <a href="#" th:href="@{/tags}" target="_blank">more<i class="angle double right icon"></i></a>
+                                <a href="#" th:href="@{/tags/-1}" target="_blank">more<i
+                                        class="angle double right icon"></i></a>
                             </div>
                         </div>
                     </div>
@@ -142,7 +148,8 @@
                         </div>
                     </div>
                     <div class="ui segment" th:each="recommendedBlog : ${recommendedBlogs}">
-                        <a href="#" th:href="@{/blog/{id}(id=${recommendedBlog.id})}" target="_blank" class="my-black my-text-thin" th:text="${recommendedBlog.title}">用户故事1</a>
+                        <a href="#" th:href="@{/blog/{id}(id=${recommendedBlog.id})}" target="_blank"
+                           class="my-black my-text-thin" th:text="${recommendedBlog.title}">用户故事1</a>
                     </div>
                 </div>
                 <!--二维码-->

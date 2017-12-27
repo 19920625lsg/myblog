@@ -1,5 +1,6 @@
 package com.huawei.l00379880.myblogbackend.controller;
 
+import com.huawei.l00379880.myblogbackend.entity.Tag;
 import com.huawei.l00379880.myblogbackend.entity.Type;
 import com.huawei.l00379880.myblogbackend.exception.NotFoundException;
 import com.huawei.l00379880.myblogbackend.service.BlogService;
@@ -88,8 +89,18 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/tags")
-    String tags() {
+    @GetMapping("/tags/{id}")
+    String tags(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+                @PathVariable Long id, Model model) {
+        List<Tag> tags = tagService.findAll();
+        model.addAttribute("tags", tags);
+        if (id == -1) {
+            // 说明是从导航栏直接点击过来地.那么就把第一个标签作为活跃分类
+            id = tags.get(0).getId();
+        }
+        model.addAttribute("page", blogService.listBlog(pageable, id));
+        // 返回当前活跃的typeId
+        model.addAttribute("activeTagId", id);
         return "tags";
     }
 

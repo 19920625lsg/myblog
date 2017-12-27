@@ -49,6 +49,11 @@ public interface BlogService {
     Page<Blog> listBlog(Pageable pageable);
 
     /**
+     * 根据标签id查询下面的所有博客
+     */
+    Page<Blog> listBlog(Pageable pageable, Long tagId);
+
+    /**
      * 搜索根据关键词进行分页查询,查询标题(title)、描述(description)、博客内容(content)是不是包含关键词
      *
      * @param query    查询关键词

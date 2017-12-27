@@ -17,221 +17,85 @@
         <div class="ui top attached segment">
             <div class="ui middle aligned two column grid">
                 <div class="column">
-                    <h3 class="ui teal header">分类</h3>
+                    <h3 class="ui teal header">标签</h3>
                 </div>
                 <div class="right aligned column">
-                    共&nbsp;<h2 class="ui orange header my-inline-block my-text-thin">17</h2>&nbsp;个
+                    共&nbsp;<h2 class="ui orange header my-inline-block my-text-thin" th:text="${#arrays.length(tags)}">
+                    17</h2>&nbsp;个
                 </div>
             </div>
         </div>
         <div class="ui attached segment my-padding-large">
-            <a href="#" class="ui teal basic left pointing large label my-margin-tiny">
-                方法论
-                <div class="detail">28</div>
-            </a>
-            <a href="#" class="ui basic left pointing large label my-margin-tiny">
-                方法论
-                <div class="detail">28</div>
-            </a>
-            <a href="#" class="ui basic left pointing large label my-margin-tiny">
-                方法论
-                <div class="detail">28</div>
-            </a>
-            <a href="#" class="ui basic left pointing large label my-margin-tiny">
-                方法论
-                <div class="detail">28</div>
-            </a>
-            <a href="#" class="ui basic left pointing large label my-margin-tiny">
-                方法论
-                <div class="detail">28</div>
-            </a>
-            <a href="#" class="ui basic left pointing large label my-margin-tiny">
-                方法论
-                <div class="detail">28</div>
-            </a>
-            <a href="#" class="ui basic left pointing large label my-margin-tiny">
-                方法论
-                <div class="detail">28</div>
-            </a>
-            <a href="#" class="ui basic left pointing large label my-margin-tiny">
-                方法论
-                <div class="detail">28</div>
-            </a>
-            <a href="#" class="ui basic left pointing large label my-margin-tiny">
-                方法论
-                <div class="detail">28</div>
-            </a>
-            <a href="#" class="ui basic left pointing large label my-margin-tiny">
-                方法论
-                <div class="detail">28</div>
-            </a>
-            <a href="#" class="ui basic left pointing large label my-margin-tiny">
-                方法论
-                <div class="detail">28</div>
-            </a>
+            <div class="ui labeled button my-margin-tiny" th:each="tag : ${tags}">
+                <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui basic button"
+                   th:classappend="${tag.id==activeTagId} ? teal" th:text="${tag.name}">思考与感悟</a>
+                <div class="ui basic left pointing label" th:classappend="${tag.id==activeTagId} ? teal"
+                     th:text="${#arrays.length(tag.blogs)}">24
+                </div>
+            </div>
         </div>
+        <!--博客列表-->
         <div class="ui top attached teal segment">
             <!--文章列表-->
-            <div class="ui padded vertical segment my-padding-large my-mobile-left-right-clear">
-                <div class="ui  mobile reversed stackable grid">
+            <div class="ui padded vertical segment my-padding-large my-mobile-left-right-clear"
+                 th:each="blog : ${page.content}">
+                <!--middle aligned实现图片居中-->
+                <div class="ui middle aligned mobile reversed stackable grid">
                     <div class="eleven wide column">
-                        <h3 class="ui header">银河战舰战略失误</h3>
-                        <p class="my-text">
+                        <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank"
+                                                 class="my-green" th:text="${blog.title}">银河战舰战略失误</a>
+                        </h3>
+                        <p class="my-text" th:text="|${blog.description}............|">
                             欧冠一场大胜，皇马球员笑逐颜开。不过对手只是希腊人，并不强，且到底还是被热刺超越，银河战舰只拿到了小组第二...
                         </p>
-                        <div class="ui stackable grid">
-                            <div class="row">
-                                <div class="eleven wide column">
-                                    <div class="ui mini horizontal link list">
-                                        <div class="item">
-                                            <img src="https://picsum.photos/100/100?image=1027"
-                                                 class="ui avatar image"/>
-                                            <div class="content"><a href="#" class="header">梁山广</a></div>
-                                        </div>
-                                        <div class="item"><i class="calendar icon"></i>2017-11-22</div>
-                                        <div class="item"><i class="eye icon"></i>2342</div>
+                        <div class="ui grid">
+                            <div class="eleven wide column">
+                                <div class="ui mini horizontal link list">
+                                    <div class="item">
+                                        <img src="https://picsum.photos/100/100?image=1027"
+                                             th:src="@{${blog.user.avatar}}"
+                                             class="ui avatar image"/>
+                                        <div class="content"><a href="#" class="header"
+                                                                th:text="${blog.user.nickname}">梁山广</a></div>
                                     </div>
-                                </div>
-                                <div class="right aligned five wide column">
-                                    <a href="#" target="_blank"
-                                       class="ui middle basic teal label my-padding-tiny-all my-text-thin">体育新闻</a>
+                                    <div class="item"><i class="calendar icon"></i><span
+                                            th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd hh:MM:ss')}"></span>
+                                    </div>
+                                    <!--访问量-->
+                                    <div class="item"><i class="eye icon"></i><span
+                                            th:text="${blog.visits}">1234</span></div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="column">
-                                    <a href="#" class="ui basic teal left pointing label my-padding-mini">方法论</a>
-                                </div>
+                            <!--分类-->
+                            <div class="right aligned five wide column" th:each="tagSon : ${blog.tags}">
+                                <a href="#" target="_blank"
+                                   class="ui middle basic teal label my-padding-tiny-all my-text-thin my-index-type-size"
+                                   th:text="${tagSon.name}">体育新闻
+                                </a>
                             </div>
                         </div>
                     </div>
                     <div class="five wide column">
-                        <a href="#" target="_blank">
-                            <img src="https://picsum.photos/800/450?image=1000" class="ui rounded image"/>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="ui padded vertical segment my-padding-large my-mobile-left-right-clear">
-                <div class="ui mobile reversed stackable grid">
-                    <div class="eleven wide column">
-                        <h3 class="ui header">保利尼奥假摔染黄</h3>
-                        <p class="my-text">保利尼奥和尤文图斯球员皮亚尼奇在尤文禁区内轻微身体接触后，高高跃起，翻转后倒地。裁判对...</p>
-                        <div class="ui stackable grid">
-                            <div class="row">
-                                <div class="eleven wide column">
-                                    <div class="ui mini horizontal link list">
-                                        <div class="item">
-                                            <img src="https://picsum.photos/100/100?image=1027"
-                                                 class="ui avatar image"/>
-                                            <div class="content"><a href="#" class="header">梁山广</a></div>
-                                        </div>
-                                        <div class="item"><i class="calendar icon"></i>2017-11-23</div>
-                                        <div class="item"><i class="eye icon"></i>3333</div>
-                                    </div>
-                                </div>
-                                <div class="right aligned five wide column">
-                                    <a href="#" target="_blank"
-                                       class="ui middle basic teal label my-padding-tiny-all my-text-thin">体育新闻</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="column">
-                                    <a href="#" class="ui basic teal left pointing label my-padding-mini">方法论</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="five wide column">
-                        <a href="#" target="_blank">
-                            <img src="https://picsum.photos/800/450?image=1022" class="ui rounded image"/>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="ui padded vertical segment my-padding-large my-mobile-left-right-clear">
-                <div class="ui mobile reversed stackable grid">
-                    <div class="eleven wide column">
-                        <h3 class="ui header">华为Mate 10 Pro实测网速超1Gbps</h3>
-                        <p class="my-text">昨晚，华为高管何刚分享了海外网友的实测，Mate 10 Pro的网速达到1039.61bps，超越了骁龙...</p>
-                        <div class="ui stackable grid">
-                            <div class="row">
-                                <div class="eleven wide column">
-                                    <div class="ui mini horizontal link list">
-                                        <div class="item">
-                                            <img src="https://picsum.photos/100/100?image=1027"
-                                                 class="ui avatar image"/>
-                                            <div class="content"><a href="#" class="header">梁山广</a></div>
-                                        </div>
-                                        <div class="item"><i class="calendar icon"></i>2016-10-20</div>
-                                        <div class="item"><i class="eye icon"></i>12342</div>
-                                    </div>
-                                </div>
-                                <div class="right aligned five wide column">
-                                    <a href="#" target="_blank"
-                                       class="ui middle basic teal label my-padding-tiny-all my-text-thin">科技新闻</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="column">
-                                    <a href="#" class="ui basic teal left pointing label my-padding-mini">方法论</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="five wide column">
-                        <a href="#" target="_blank">
-                            <img src="https://picsum.photos/800/450?image=1076" class="ui rounded image"/>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="ui padded vertical segment my-padding-large my-mobile-left-right-clear">
-                <div class="ui mobile reversed stackable grid">
-                    <div class="eleven wide column">
-                        <h3 class="ui header">解析阻止机器学习的十种网络攻击</h3>
-                        <p class="my-text">
-                            人工智能(AI)和机器学习(ML)是众多辩论的主题，特别是在网络安全社区内更是如此。那么，机器学习会是下一个...
-                        </p>
-                        <div class="ui stackable grid">
-                            <div class="row">
-                                <div class="eleven wide column">
-                                    <div class="ui mini horizontal link list">
-                                        <div class="item">
-                                            <img src="https://picsum.photos/100/100?image=1027"
-                                                 class="ui avatar image"/>
-                                            <div class="content"><a href="#" class="header">梁山广</a></div>
-                                        </div>
-                                        <div class="item"><i class="calendar icon"></i>2017-11-22</div>
-                                        <div class="item"><i class="eye icon"></i>2342</div>
-                                    </div>
-                                </div>
-                                <div class="right aligned five wide column">
-                                    <a href="#" target="_blank"
-                                       class="ui middle basic teal label my-padding-tiny-all my-text-thin">编程学习</a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="column">
-                                    <a href="#" class="ui basic teal left pointing label my-padding-mini">方法论</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="five wide column">
-                        <a href="#" target="_blank">
-                            <img src="https://picsum.photos/800/450?image=1000" class="ui rounded image"/>
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                            <img src="https://picsum.photos/800/450?image=1000" th:src="@{${blog.firstPicture}}"
+                                 class="ui rounded image"/>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ui bottom attached segment">
+        <!--分页-->
+        <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
             <div class="ui middle aligned two column grid">
                 <div class="column">
-                    <div class="ui teal basic mini button">上一页</div>
+                    <a href="#" th:href="@{/tags/}+${activeTagId}+'?page='+@{${page.number}-1}"
+                       class="ui mini teal basic button"
+                       th:unless="${page.first}">上一页</a>
                 </div>
                 <div class="right aligned column">
-                    <div class="ui teal basic mini button">下一页</div>
+                    <a href="#" th:href="@{/tags/}+${activeTagId}+'?page='+@{${page.number}+1}"
+                       class="ui mini teal basic button"
+                       th:unless="${page.last}">下一页</a>
                 </div>
             </div>
         </div>

@@ -94,4 +94,9 @@ public class TagServiceImpl implements TagService {
     public void deleteTag(Long id) {
         tagRepository.delete(id);
     }
+
+    @Override
+    public List<Tag> findAll() {
+        return tagRepository.findAll();
+    }
 }
