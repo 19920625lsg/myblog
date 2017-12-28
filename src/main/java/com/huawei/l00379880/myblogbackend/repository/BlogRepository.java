@@ -18,9 +18,15 @@ import java.util.List;
 
 public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificationExecutor<Blog> {
 
+    /**
+     * 按照访问数进行博客推荐
+     */
     @Query("select b from Blog b where b.recommended = true order by b.visits")
     List<Blog> findTopRecommended(Pageable pageable);
 
+    /**
+     * 根据查询对象和分页信息获取博客
+     */
     @Query("select b from Blog b where b.title like ?1 or b.content like ?1 or b.description like ?1")
     Page<Blog> findByQuery(String query, Pageable pageable);
 
@@ -30,4 +36,10 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
     @Modifying
     @Query("update Blog b set b.visits = b.visits + 1 where b.id = ?1")
     int updateVisits(Long id);
+
+    @Query("select function('date_format',b.updateTime,'%Y') as year from Blog b group by function('date_format',b.updateTime,'%Y') order by year desc ")
+    List<String> findGroupYear();
+
+    @Query("select b from Blog b where function('date_format',b.updateTime,'%Y') = ?1")
+    List<Blog> findByYear(String year);
 }

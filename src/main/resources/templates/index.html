@@ -127,7 +127,7 @@
                     <div class="ui teal segment">
                         <!--fluid是填充满外层容器-->
                         <div class="ui vertical fluid menu" th:each="type : ${types}">
-                            <a href="#" class="item">
+                            <a href="#" th:href="@{/types/}+${type.id}" target="_blank" class="item">
                                 <span th:text="${type.name}"></span>
                                 <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">
                                     13
@@ -151,7 +151,7 @@
                         </div>
                     </div>
                     <div class="ui teal segment">
-                        <a href="#" class="ui teal basic left pointing label my-margin-tiny" th:each="tag : ${tags}">
+                        <a href="#" th:href="@{/tags/}+${tag.id}" target="_blank" class="ui basic left pointing label my-margin-tiny" th:each="tag : ${tags}">
                             <span th:text="${tag.name}"></span>
                             <div class="detail" th:text="${#arrays.length(tag.blogs)}">28</div>
                         </a>

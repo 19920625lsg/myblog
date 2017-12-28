@@ -47,11 +47,6 @@ public class IndexController {
         return "about";
     }
 
-    @GetMapping("/archives")
-    String archives() {
-        return "archives";
-    }
-
     @GetMapping("/blog/{id}")
     String blog(@PathVariable Long id, Model model) {
         // 在getAndConvertBlog方法中实现访问量自增了
@@ -128,6 +123,13 @@ public class IndexController {
         // 返回当前活跃的typeId
         model.addAttribute("activeTagId", id);
         return "tags";
+    }
+
+    @GetMapping("/archives")
+    String archives(Model model) {
+        model.addAttribute("archiveMap", blogService.archiveBlog());
+        model.addAttribute("blogCount", blogService.countBlog());
+        return "archives";
     }
 
     @GetMapping("/search")

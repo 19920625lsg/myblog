@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BlogService {
 
@@ -93,4 +94,16 @@ public interface BlogService {
      * @param id 博客id
      */
     void deleteBlog(Long id);
+
+    /**
+     * 获取每个年份下的博客列表,以<年份,博客列表>的形式返回
+     *
+     * @return <年份,博客列表>的map
+     */
+    Map<String, List<Blog>> archiveBlog();
+
+    /**
+     * 获得博客总数
+     */
+    Long countBlog();
 }
