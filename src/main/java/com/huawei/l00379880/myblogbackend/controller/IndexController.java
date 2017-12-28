@@ -89,21 +89,6 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/tags/{id}")
-    String tags(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                @PathVariable Long id, Model model) {
-        List<Tag> tags = tagService.findAll();
-        model.addAttribute("tags", tags);
-        if (id == -1) {
-            // 说明是从导航栏直接点击过来地.那么就把第一个标签作为活跃分类
-            id = tags.get(0).getId();
-        }
-        model.addAttribute("page", blogService.listBlog(pageable, id));
-        // 返回当前活跃的typeId
-        model.addAttribute("activeTagId", id);
-        return "tags";
-    }
-
     /**
      * @param id 活跃的分类的ID
      * @return 返回到分类页面
@@ -111,7 +96,9 @@ public class IndexController {
     @GetMapping("/types/{id}")
     String types(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                  @PathVariable Long id, Model model) {
-        List<Type> types = typeService.findAll();
+        List<Type> typesTemp = typeService.findAll();
+        // 之所以再取一遍是为了按照blogs的数目,见listTypeTop的实现.findAll()直接传入sort对象会报找不到blogs.size属性
+        List<Type> types = typeService.listTypeTop(typesTemp.size());
         model.addAttribute("types", types);
         if (id == -1) {
             // 说明是从导航栏直接点击过来地.那么就把第一个分类作为活跃分类
@@ -124,6 +111,23 @@ public class IndexController {
         // 返回当前活跃的typeId
         model.addAttribute("activeTypeId", id);
         return "types";
+    }
+
+    @GetMapping("/tags/{id}")
+    String tags(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+                @PathVariable Long id, Model model) {
+        List<Tag> tagsTemp = tagService.findAll();
+        // 之所以再取一遍是为了按照blogs的数目,见listTagTop的实现.findAll()直接传入sort对象会报找不到blogs.size属性
+        List<Tag> tags = tagService.listTagTop(tagsTemp.size());
+        model.addAttribute("tags", tags);
+        if (id == -1) {
+            // 说明是从导航栏直接点击过来地.那么就把第一个标签作为活跃分类
+            id = tags.get(0).getId();
+        }
+        model.addAttribute("page", blogService.listBlog(pageable, id));
+        // 返回当前活跃的typeId
+        model.addAttribute("activeTagId", id);
+        return "tags";
     }
 
     @GetMapping("/search")

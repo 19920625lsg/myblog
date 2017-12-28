@@ -27,10 +27,10 @@
         </div>
         <div class="ui attached segment my-padding-large">
             <div class="ui labeled button my-margin-tiny" th:each="tag : ${tags}">
-                <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" th:classappend="${tag.id==activeTagId} ? red"
+                <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" th:classappend="${tag.id==activeTagId} ? teal"
                    class="ui basic left pointing large label m-margin-tb-tiny">
-                    方法论
-                    <div class="detail" th:classappend="${tag.id==activeTagId} ? red"
+                    <span  th:text="${tag.name}"></span>
+                    <div class="detail" th:classappend="${tag.id==activeTagId} ? teal"
                          th:text="${#arrays.length(tag.blogs)}">
                         23
                     </div>
