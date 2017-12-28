@@ -99,8 +99,13 @@ public class TagController {
 
     @GetMapping("/tag/{id}/delete")
     public String deleteTag(@PathVariable Long id, RedirectAttributes attributes) {
-        attributes.addFlashAttribute("message", "删除博客'" + tagService.getTag(id).getName() + "'标签成功！");
-        tagService.deleteTag(id);
+        try {
+            attributes.addFlashAttribute("message", "删除博客'" + tagService.getTag(id).getName() + "'标签成功！");
+            tagService.deleteTag(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            attributes.addFlashAttribute("message", "删除博客标签失败！失败信息为：" + e.getMessage());
+        }
         return "redirect:/admin/tags";
     }
 

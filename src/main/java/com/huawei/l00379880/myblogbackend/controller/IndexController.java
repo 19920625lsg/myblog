@@ -42,10 +42,6 @@ public class IndexController {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping("/about")
-    String about() {
-        return "about";
-    }
 
     @GetMapping("/blog/{id}")
     String blog(@PathVariable Long id, Model model) {
@@ -82,6 +78,14 @@ public class IndexController {
             direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         addModel(pageable, model);
         return "index";
+    }
+
+    @GetMapping("/search")
+    String search(@PageableDefault(size = 6, sort = {"updateTime"},
+            direction = Sort.Direction.DESC) Pageable pageable, @RequestParam String query, Model model) {
+        model.addAttribute("page", blogService.listBlog(query, pageable));
+        model.addAttribute("query", query);
+        return "search";
     }
 
     /**
@@ -132,12 +136,9 @@ public class IndexController {
         return "archives";
     }
 
-    @GetMapping("/search")
-    String search(@PageableDefault(size = 6, sort = {"updateTime"},
-            direction = Sort.Direction.DESC) Pageable pageable, @RequestParam String query, Model model) {
-        model.addAttribute("page", blogService.listBlog(query, pageable));
-        model.addAttribute("query", query);
-        return "search";
+    @GetMapping("/about")
+    String about() {
+        return "about";
     }
 
 }

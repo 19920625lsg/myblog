@@ -99,8 +99,14 @@ public class TypeController {
 
     @GetMapping("/type/{id}/delete")
     public String deleteType(@PathVariable Long id, RedirectAttributes attributes) {
-        attributes.addFlashAttribute("message", "删除博客分类'" + typeService.getType(id).getName() + "'成功！");
-        typeService.deleteType(id);
+        try {
+            attributes.addFlashAttribute("message", "删除博客分类'" + typeService.getType(id).getName() + "'成功！");
+            typeService.deleteType(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 把错误信息返回给前端
+            attributes.addFlashAttribute("message", "删除博客分类失败！失败信息为：" + e.getMessage());
+        }
         return "redirect:/admin/types";
     }
 

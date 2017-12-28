@@ -37,9 +37,20 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
     @Query("update Blog b set b.visits = b.visits + 1 where b.id = ?1")
     int updateVisits(Long id);
 
+    /**
+     * 找到所有的年份
+     *
+     * @return 所有年份的字符串
+     */
     @Query("select function('date_format',b.updateTime,'%Y') as year from Blog b group by function('date_format',b.updateTime,'%Y') order by year desc ")
     List<String> findGroupYear();
 
-    @Query("select b from Blog b where function('date_format',b.updateTime,'%Y') = ?1")
+    /**
+     * 根据年份插叙该年的所有博客，并按照博客的更新时间降序排列
+     *
+     * @param year 年份
+     * @return 该年内的所有博客，按照更新时间进行降序排列
+     */
+    @Query("select b from Blog b where function('date_format',b.updateTime,'%Y') = ?1 order by b.updateTime desc")
     List<Blog> findByYear(String year);
 }
