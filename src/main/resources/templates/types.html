@@ -36,7 +36,6 @@
         </div>
         <!--博客列表-->
         <div class="ui top attached teal segment">
-            <!--文章列表-->
             <div class="ui padded vertical segment my-padding-large my-mobile-left-right-clear"
                  th:each="blog : ${page.content}">
                 <!--middle aligned实现图片居中-->
@@ -66,11 +65,11 @@
                                             th:text="${blog.visits}">1234</span></div>
                                 </div>
                             </div>
-                            <!--分类-->
+                            <!--原创、转载、翻译-->
                             <div class="right aligned five wide column">
                                 <a href="#" target="_blank"
-                                   class="ui middle basic teal label my-padding-tiny-all my-text-thin my-index-type-size"
-                                   th:text="${blog.type.name}">体育新闻</a>
+                                   class="ui middle basic orange label my-padding-tiny-all my-text-thin my-index-type-size"
+                                   th:text="${blog.flag}">体育新闻</a>
                             </div>
                         </div>
                     </div>
@@ -79,6 +78,24 @@
                             <img src="https://picsum.photos/800/450?image=1000" th:src="@{${blog.firstPicture}}"
                                  class="ui rounded image"/>
                         </a>
+                    </div>
+                </div>
+                <div class="ui grid">
+                    <div class="four wide column">
+                        <i class="tags icon"></i>
+                        <div class="ui basic label" th:text="${blog.type.name}">
+                            编程学习
+                        </div>
+                    </div>
+                    <div class="twelve wide column">
+                        <!--要想让某块居右，必须要放在一个ui container中-->
+                        <div class="ui right aligned container">
+                            <i class="bookmark icon"></i>
+                            <div class="ui basic left pointing label" th:each="tag : ${blog.tags}"
+                                 th:text="${tag.name}">
+                                体育
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

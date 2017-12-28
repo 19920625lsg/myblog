@@ -45,18 +45,8 @@
                     <div class="ui orange basic label" th:text="${blog.flag}">
                         原创
                     </div>
-                    <div class="ui yellow basic left pointing label" th:text="${blog.type.name}">
-                        编程学习
-                    </div>
                 </div>
                 <div class="eight wide column">
-                    <!--要想让某块居右，必须要放在一个ui container中-->
-                    <div class="ui right aligned container">
-                        <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}"
-                             th:text="${tag.name}">
-                            体育
-                        </div>
-                    </div>
                 </div>
             </div>
             <h2 class="ui center aligned header" th:text="${blog.title}">梅西获颁欧洲金靴奖</h2>
@@ -64,6 +54,24 @@
             <div id="content" class="typo typo-selection js-toc-content my-padded-left-right-resp my-padding-large"
                  th:utext="${blog.content}">
                 <!--<h1 id="codetest">代码高亮测试：prism，必须指定语言</h1>-->
+            </div>
+            <div class="ui grid">
+                <div class="four wide column">
+                    <i class="tags icon"></i>
+                    <div class="ui basic label" th:text="${blog.type.name}">
+                        编程学习
+                    </div>
+                </div>
+                <div class="twelve wide column">
+                    <!--要想让某块居右，必须要放在一个ui container中-->
+                    <div class="ui right aligned container">
+                        <i class="bookmark icon"></i>
+                        <div class="ui basic left pointing label" th:each="tag : ${blog.tags}"
+                             th:text="${tag.name}">
+                            体育
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--赞赏-->
             <div class="ui center aligned basic segment">
@@ -95,9 +103,9 @@
                 </div>
                 <div class="ten wide column">
                     <div class="list">
-                        <li>文章题目：<span th:text="${blog.title}">梁山广</span>
-                        <li>发表时间：<span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd hh:MM:ss')}"></span></li>
                         <li>作者姓名：<span th:text="${blog.user.nickname}">梁山广</span></li>
+                        <li>文章题目：<span th:text="${blog.title}">我在华为的一年</span>
+                        <li>发表时间：<span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd hh:MM:ss')}"></span></li>
                         <li>作者职业：华为--无线产品线--高级软件工程师</li>
                         <li>版权声明：自由转载，但请保留此块作者相关信息</li>
                     </div>
