@@ -42,7 +42,8 @@
         <div class="ui attached padded segment">
             <div class="ui grid">
                 <div class="eight wide column">
-                    <div class="ui orange basic label" th:text="${blog.flag}">
+                    <div class="ui basic label" th:classappend="${blog.flag == '原创'} ? orange : grey"
+                         th:text="${blog.flag}">
                         原创
                     </div>
                 </div>

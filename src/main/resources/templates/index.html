@@ -61,8 +61,10 @@
                                     <!--原创、转载、翻译-->
                                     <div class="right aligned five wide column">
                                         <a href="#" target="_blank"
-                                           class="ui middle basic orange label my-padding-tiny-all my-text-thin my-index-type-size"
-                                           th:text="${blog.flag}">体育新闻</a>
+                                           class="ui middle basic label my-padding-tiny-all my-text-thin my-index-type-size"
+                                           th:classappend="${blog.flag == '原创'} ? orange : grey" th:text="${blog.flag}">
+                                            体育新闻
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +153,8 @@
                         </div>
                     </div>
                     <div class="ui teal segment">
-                        <a href="#" th:href="@{/tags/}+${tag.id}" target="_blank" class="ui basic left pointing label my-margin-tiny" th:each="tag : ${tags}">
+                        <a href="#" th:href="@{/tags/}+${tag.id}" target="_blank"
+                           class="ui basic left pointing label my-margin-tiny" th:each="tag : ${tags}">
                             <span th:text="${tag.name}"></span>
                             <div class="detail" th:text="${#arrays.length(tag.blogs)}">28</div>
                         </a>
