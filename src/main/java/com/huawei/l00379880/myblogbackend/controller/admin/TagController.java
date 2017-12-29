@@ -103,8 +103,7 @@ public class TagController {
             attributes.addFlashAttribute("message", "删除博客'" + tagService.getTag(id).getName() + "'标签成功！");
             tagService.deleteTag(id);
         } catch (Exception e) {
-            e.printStackTrace();
-            attributes.addFlashAttribute("message", "删除博客标签失败！失败信息为：" + e.getMessage());
+            attributes.addFlashAttribute("message", "删除博客标签失败！有博客正在使用标签'" + tagService.getTag(id).getName() + "'!");
         }
         return "redirect:/admin/tags";
     }

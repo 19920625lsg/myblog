@@ -103,9 +103,8 @@ public class TypeController {
             attributes.addFlashAttribute("message", "删除博客分类'" + typeService.getType(id).getName() + "'成功！");
             typeService.deleteType(id);
         } catch (Exception e) {
-            e.printStackTrace();
             // 把错误信息返回给前端
-            attributes.addFlashAttribute("message", "删除博客分类失败！失败信息为：" + e.getMessage());
+            attributes.addFlashAttribute("message", "删除博客分类失败！有博客正在使用分类'" + typeService.getType(id).getName() + "'!");
         }
         return "redirect:/admin/types";
     }
