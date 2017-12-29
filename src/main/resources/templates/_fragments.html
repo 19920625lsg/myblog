@@ -43,8 +43,8 @@
 <nav th:fragment="mymenu(n)" class="ui inverted segment my-padding-mini my-shadow-small">
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
-            <h2 class="ui teal header item">山广的博客</h2>
-            <a href="index" th:href="@{/index}" class="nav-item item my-mobile-hide"
+            <h2 class="ui middle aligned teal header item">SanGuang</h2>
+            <a href="index" th:href="@{/}" class="nav-item item my-mobile-hide"
                th:classappend="${n==1} ? 'active'"><i class="home icon"></i>首页</a>
             <!--传入-1是因为要告诉后台是从导航栏进入地，默认选择第一个分类即可-->
             <a href="types" th:href="@{/types/-1}" class="nav-item item my-mobile-hide"
