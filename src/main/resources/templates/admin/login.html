@@ -23,6 +23,7 @@
     <script src="lib/verifynum/verifynum.js" th:src="@{/lib/verifynum/verifynum.js}"></script>
     <script src="lib/particleground/particleground.js" th:src="@{/lib/particleground/particleground.js}"></script>
     <script>
+
         $(document).ready(function () {
             //粒子背景特效
             $('body').particleground({
@@ -31,29 +32,39 @@
             });
             //验证码
             createCode();
-            //测试提交，对接程序删除即可
-            $(".submit_btn").click(function () {
+
+            //这个方法只是用来做个掩护,没有这个掩护是不行的!
+            function mySubmit(flag) {
+                return flag;
+            }
+
+            $("#loginForm").submit(function () {
+                if ($('#username').val() === "" || $('#password').val() === "") {
+                    alert("用户名和密码不能为空!");
+                    return mySubmit(false);
+                }
                 if (validate() === true) {
-                    alert("登陆成功!!");
+                    document.getElementById("J_codetext").setAttribute("placeholder", "验证码正确");
+                    return mySubmit(true);
                 } else {
-                    alert("验证码错误!");
+                    return mySubmit(false);
                 }
             });
         });
     </script>
 </head>
 <body>
-<form method="post" th:action="@{/admin/login}">
+<form id="loginForm" method="post" th:action="@{/admin/login}" onsubmit="return mySubmit(true)">
     <dl class="admin_login">
         <dt>
             <strong>博客后台管理系统</strong>
             <em>Admin System</em>
         </dt>
         <dd class="user_icon">
-            <input type="text" name="username" placeholder="账号" class="login_txtbx"/>
+            <input id="username" type="text" name="username" placeholder="账号" class="login_txtbx"/>
         </dd>
         <dd class="pwd_icon">
-            <input type="password" name="password" placeholder="密码" class="login_txtbx"/>
+            <input id="password" type="password" name="password" placeholder="密码" class="login_txtbx"/>
         </dd>
         <dd class="val_icon">
             <div class="checkcode">
@@ -66,7 +77,9 @@
             <input type="submit" value="立即登陆" class="submit_btn"/>
         </dd>
         <dd>
-            <p class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}">Copyright© 2017 梁山广</p>
+            <p id="errMsg" th:unless="${#strings.isEmpty(message)}" th:text="${message}">
+                Copyright© 2017 梁山广
+            </p>
         </dd>
     </dl>
 </form>
