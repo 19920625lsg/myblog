@@ -174,11 +174,11 @@
                             <a href="#" th:href="@{/blog/{id}(id=${recommendedBlog.id})}" target="_blank" class="item">
 
 
-                                <div class="ui middle aligned two column grid">
-                                    <div class="column">
+                                <div class="ui middle aligned grid">
+                                    <div class="eleven wide column">
                                         <span class="my-teal my-text-thin" th:text="${recommendedBlog.title}"></span>
                                     </div>
-                                    <div class="right aligned column">
+                                    <div class="right aligned five wide column">
                                         <!--访问量-->
                                         <i class="eye icon"></i><span class="right aligned"
                                                                       th:text="${recommendedBlog.visits}">1234</span>

@@ -112,9 +112,10 @@ public class Blog {
     private User user;
 
     /**
-     * 一个博客对应多个评论,一对多的时候由"一"维护.多对多二选一即可.一对一一般不用
+     * 一个博客对应多个评论,一对多的时候由"一"维护.多对多二选一即可.一对一一般不用.
+     * , cascade = CascadeType.ALL是为了在删除博客的时候能把评论也删除,要不就会报错地
      */
-    @OneToMany(mappedBy = "blog")
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
 
     public void init() {
