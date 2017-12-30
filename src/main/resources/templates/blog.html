@@ -33,8 +33,8 @@
                 </div>
             </div>
         </div>
-        <!--博客首页图片-->
-        <div class="ui attached segment">
+        <!--博客首页图可控制是否显示-->
+        <div class="ui attached segment" th:if="${blog.firstPictureShow}==true">
             <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511623632429&di=52512f2ea0757f93523d62ff97418f02&imgtype=0&src=http%3A%2F%2Fb.zol-img.com.cn%2Fdesk%2Fbizhi%2Fimage%2F5%2F960x600%2F1402539331834.jpg"
                  th:src="@{${blog.firstPicture}}" class="ui fluid rounded image"/>
         </div>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <!--赞赏-->
-            <div class="ui center aligned basic segment">
+            <div class="ui center aligned basic segment" th:if="${blog.appreciation}==true">
                 <button id="payBtn" class="ui orange basic circular button">赞赏</button>
             </div>
             <!--点击才弹出显示-->
@@ -97,7 +97,7 @@
             </div>
         </div>
         <!--版权信息-->
-        <div class="ui attached positive message">
+        <div class="ui attached positive message" th:if="${blog.shareStatement}==true">
             <div class="ui middle aligned grid">
                 <div class="one wide column">
 
@@ -120,7 +120,8 @@
                 </div>
             </div>
         </div>
-        <div class="ui bottom attached segment">
+        <!--评论区-->
+        <div class="ui bottom attached segment" th:if="${blog.commendable}==true">
             <!--留言区域,局部加载-->
             <div id="comment-container" class="ui teal segment">
                 <div th:fragment="commentList">

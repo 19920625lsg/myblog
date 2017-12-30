@@ -96,29 +96,38 @@
             <div class="inline fields">
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="recommended" name="recommended" th:checked="*{recommended}"
-                               class="hidden" checked>
+                        <!--*{title}==null ? true :  是为了判断如果是新增博客的话,默认把下面的多选框都选上-->
+                        <input type="checkbox" id="firstPictureShow" name="firstPictureShow"
+                               th:checked="*{title}==null ? true : *{firstPictureShow}" class="hidden" checked>
+                        <label for="firstPictureShow">详情页显示首图</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <!--*{title}==null ? true :  是为了判断如果是新增博客的话,默认把下面的多选框都选上-->
+                        <input type="checkbox" id="recommended" name="recommended"
+                               th:checked="*{title}==null ? true : *{recommended}" class="hidden" checked>
                         <label for="recommended">推荐</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="shareStatement" name="shareStatement" th:checked="*{shareStatement}"
-                               class="hidden" checked>
+                        <input type="checkbox" id="shareStatement" name="shareStatement"
+                               th:checked="*{title}==null ? true : *{shareStatement}" class="hidden" checked>
                         <label for="shareStatement">转载声明</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="appreciation" name="appreciation" th:checked="*{appreciation}"
-                               class="hidden">
+                        <input type="checkbox" id="appreciation" name="appreciation"
+                               th:checked="*{title}==null ? true : *{appreciation}" class="hidden">
                         <label for="appreciation">赞赏</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui checkbox">
-                        <input type="checkbox" id="commendable" name="commendable" th:checked="*{commendable}"
-                               class="hidden" checked>
+                        <input type="checkbox" id="commendable" name="commendable"
+                               th:checked="*{title}==null ? true : *{commendable}" class="hidden" checked>
                         <label for="commendable">评论</label>
                     </div>
                 </div>
@@ -189,10 +198,10 @@
                     prompt: '标题：请输入博客首图'
                 }]
             },
-            description : {
+            description: {
                 identifier: 'description',
                 rules: [{
-                    type : 'empty',
+                    type: 'empty',
                     prompt: '标题：请输入博客描述'
                 }]
             }

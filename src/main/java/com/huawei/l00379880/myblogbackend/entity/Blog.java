@@ -40,6 +40,10 @@ public class Blog {
      */
     private String firstPicture;
     /**
+     * 是否显示首图
+     */
+    private boolean firstPictureShow;
+    /**
      * 标记
      */
     private String flag;
