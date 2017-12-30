@@ -107,7 +107,7 @@
                         <li>作者姓名：<span th:text="${blog.user.nickname}">梁山广</span></li>
                         <li>文章题目：<span th:text="${blog.title}">我在华为的一年</span>
                         <li>发表时间：<span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd HH:mm:ss')}"></span></li>
-                        <li>作者职业：华为--无线产品线--高级软件工程师</li>
+                        <li>原始来源：http://liangshanguang.wang/blog/<span th:text="${blog.id}"></span></li>
                         <li>版权声明：自由转载，但请保留此块作者相关信息</li>
                     </div>
                 </div>
