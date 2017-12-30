@@ -21,7 +21,7 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
     /**
      * 按照访问数进行博客推荐
      */
-    @Query("select b from Blog b where b.recommended = true order by b.visits")
+    @Query("select b from Blog b where b.recommended = true order by b.visits desc")
     List<Blog> findTopRecommended(Pageable pageable);
 
     /**
