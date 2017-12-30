@@ -32,7 +32,7 @@ public class TagController {
     private TagService tagService;
 
     @GetMapping("/tags")
-    public String tags(@PageableDefault(size = 5, sort = {"id"}, direction = Sort.Direction.DESC)
+    public String tags(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC)
                                Pageable pageable, Model model) {
         // pageable对象会根据url中的传参自动组装起来
         model.addAttribute("page", tagService.listTag(pageable));
