@@ -48,7 +48,7 @@
                             欧冠一场大胜，皇马球员笑逐颜开。不过对手只是希腊人，并不强，且到底还是被热刺超越，银河战舰只拿到了小组第二...
                         </p>
                         <div class="ui grid">
-                            <div class="eleven wide column">
+                            <div class="thirteen wide column">
                                 <div class="ui mini horizontal link list">
                                     <div class="item">
                                         <img src="https://picsum.photos/100/100?image=1027"
@@ -66,11 +66,11 @@
                                 </div>
                             </div>
                             <!--原创、转载、翻译-->
-                            <div class="right aligned five wide column">
+                            <div class="right aligned three wide column">
                                 <a href="#" target="_blank"
-                                   class="ui middle basic label my-padding-tiny-all my-text-thin my-index-type-size"
+                                   class="ui middle basic label my-padding-tiny-all my-text-thin"
                                    th:classappend="${blog.flag == '原创'} ? orange : grey" th:text="${blog.flag}">
-                                    体育新闻
+                                    原创
                                 </a>
                             </div>
                         </div>
@@ -83,13 +83,13 @@
                     </div>
                 </div>
                 <div class="ui grid">
-                    <div class="four wide column">
+                    <div class="five wide column">
                         <i class="tags icon"></i>
                         <div class="ui basic label" th:text="${blog.type.name}">
                             编程学习
                         </div>
                     </div>
-                    <div class="twelve wide column">
+                    <div class="eleven wide column">
                         <!--要想让某块居右，必须要放在一个ui container中-->
                         <div class="ui right aligned container">
                             <i class="bookmark icon"></i>

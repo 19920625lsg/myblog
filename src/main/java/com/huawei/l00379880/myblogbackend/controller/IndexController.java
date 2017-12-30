@@ -60,10 +60,10 @@ public class IndexController {
     private void addModel(Pageable pageable, Model model) {
         model.addAttribute("page", blogService.listBlog(pageable));
         // 取前8个分类,按照该分类下的博客的数据进行排序,越考上的分类博客数越多
-        model.addAttribute("types", typeService.listTypeTop(8));
-        model.addAttribute("tags", tagService.listTagTop(15));
+        model.addAttribute("types", typeService.listTypeTop(10));
+        model.addAttribute("tags", tagService.listTagTop(30));
         // 获取8个推荐博客
-        model.addAttribute("recommendedBlogs", blogService.listTopRecommendedBlog(5));
+        model.addAttribute("recommendedBlogs", blogService.listTopRecommendedBlog(10));
     }
 
     @GetMapping("/")
