@@ -77,28 +77,44 @@
 <footer th:fragment="myfooter" class="ui inverted vertical segment my-padding-large">
     <div class="ui center aligned container">
         <div class="ui inverted divided stackable grid">
-            <div class="four wide column">
+            <div class="five wide column">
                 <div class="ui inverted link list">
                     <div class="item">
-                        <img src="../static/images/weixin.png" th:src="@{/images/weixin.png}" class="ui rounded image"
+                        <h4 class="ui inverted header my-text-thin my-text-space">我的学习分享公众号</h4>
+                        <br>
+                        <img src="../static/images/weixin.png" th:src="@{/images/weixinpublic.jpg}"
+                             class="ui rounded image"
                              style="width: 120px;"/>
                     </div>
                 </div>
             </div>
-            <div class="eight wide column">
-                <h4 class="ui inverted header my-text-thin my-text-space">箴言</h4>
-                <p class="my-text-thin my-text-space my-opacity-mini">跛鳖千里</p>
-                <p class="my-text-thin my-text-space my-opacity-mini">虽千万人,吾往矣</p>
-                <p class="my-text-thin my-text-space my-opacity-mini">敢于向黑暗宣战的人,心里必须充满光明</p>
+            <div class="six wide column">
+                <h4 class="ui inverted header my-text-thin my-text-space">告诉，自己</h4>
+                <p class="my-text-thin my-text-space my-opacity-mini">你的坚持，终将美好</p>
+                <p class="my-text-thin my-text-space my-opacity-mini">百毒不侵的人，都曾无药可救</p>
+                <p class="my-text-thin my-text-space my-opacity-mini">如果看不清楚未来，那就努力做好现在</p>
+                <p class="my-text-thin my-text-space my-opacity-mini">当你的才华撑不起梦想，那就静下心来好好学习</p>
             </div>
-            <div class="four wide column">
-                <h4 class="ui inverted header my-text-thin my-text-space">联系我</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">OSchina:lsgwr</a>
-                    <a href="#" class="item">QQ号:1648266192</a>
-                    <a href="#" class="item">GitHub:19920625lsg</a>
-                    <a href="#" class="item">邮箱:liangshanguang2@gmail.com</a>
-                </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header my-text-thin my-text-space">Find Me</h4>
+                <p>
+                    <a href="/images/weixin.png" th:href="@{/images/weixin.png}" target="_blank" style="color: #BABABA;"
+                       class="my-text-thin my-text-space my-opacity-mini">
+                        <i class="wechat icon large"></i>liangshanguang0625
+                    </a>
+                </p>
+                <p>
+                    <a href="mailto:liangshanguang2@gmail.com" target="_blank" style="color: #BABABA;"
+                       class="my-text-thin my-text-space my-opacity-mini">
+                        <i class="google icon big"></i>liangshanguang2@gmail.com
+                    </a>
+                </p>
+                <p>
+                    <a href="https://github.com/19920625lsg" target="_blank" style="color: #BABABA;"
+                       class="my-text-thin my-text-space my-opacity-mini">
+                        <i class="github icon big"></i>https://github.com/19920625lsg
+                    </a>
+                </p>
             </div>
         </div>
         <div class="ui inverted section divider"></div>
