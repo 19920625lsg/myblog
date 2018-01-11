@@ -82,6 +82,14 @@
     font-weight: 400;
 }
 
+code {
+    /*padding: 2px 4px;*/
+    /*!*font-size: 90%;*!*/
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+}
+
 /* 去掉列表前的标识, li 会继承，大部分网站通常用列表来很多内容，所以应该当去 */
 .typo ul, ol {
     list-style: none;
@@ -244,17 +252,22 @@
     margin-bottom: 0.6em;
     line-height: 1.35;
 }
+
 /*标题*/
 .typo h1, .typo-h1 {
-    font-weight: 300;
-    font-size: 2.0em;
+    font-weight: 300 !important;
+    font-size: 2.0em !important;
+    padding-bottom: 1em !important;
+    border-bottom: 3px double #eee !important;
 }
+
 /*目录层级1*/
 .typo h2, .typo-h2 {
     font-style: italic;
     font-weight: 300;
     font-size: 1.6em;
 }
+
 /*目录层级2*/
 .typo h3, .typo-h3 {
     font-style: italic;
